@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'TT-travels';
+    src: url(./fonts/TTTravels-ExtraLight.ttf);
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'TT-travels';
+    src: url(./fonts/TTTravels-Regular.ttf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'TT-travels';
+    src: url(./fonts/TTTravels-Medium.ttf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'TT-travels';
+    src: url(./fonts/TTTravels-Bold.ttf);
+    font-weight: 700;
+}
+
+body {
+    font-family: 'TT-travels', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #404040;
+}
