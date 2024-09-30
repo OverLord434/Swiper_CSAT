@@ -25,14 +25,18 @@
             placeholder="Поиск по вопросам"
           />
           <div class="search-icon opacity-60">
-            <img src="../assets/images/search-icon.svg" alt="Иконка поиска" class="w-6 h-6" />
+            <img
+              src="../assets/images/search-icon.svg"
+              alt="Иконка поиска"
+              class="w-6 h-6"
+            />
           </div>
         </div>
 
         <div>
-          <a href="#">
+          <router-link to="/enter">
             <img src="../assets/images/profile-icon.svg" alt="Иконка профиля" />
-          </a>
+          </router-link>
         </div>
       </div>
     </div>
@@ -41,8 +45,8 @@
 
 <script>
 export default {
-  name: 'AppHeader'
-}
+  name: "AppHeader",
+};
 </script>
 
 <style>
