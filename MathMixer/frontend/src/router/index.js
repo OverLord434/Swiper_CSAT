@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../components/HomePage.vue'
 import RegisterPage from '@/components/RegisterPage.vue'
 import EnterPage from '@/components/EnterPage.vue'
+import ProfilePage from '@/components/ProfilePage.vue'
 
 const routes = [
   {
@@ -20,6 +21,12 @@ const routes = [
     path: '/enter',
     name: 'Enter',
     component: EnterPage
+  },
+
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: ProfilePage
   }
 ]
 
