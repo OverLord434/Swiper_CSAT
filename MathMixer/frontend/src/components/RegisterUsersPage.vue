@@ -3,17 +3,17 @@
     <div
       class="w-full max-w-3xl lg:max-w-7xl flex flex-col lg:flex-row items-center justify-center space-y-6 lg:space-y-0 lg:space-x-6">
       <div class="w-full lg:w-1/2 p-8 bg-white rounded-xl shadow-xl">
-        <h2 class="text-center text-3xl font-bold mb-8">Регистрация</h2>
+        <h2 class="text-center text-3xl font-bold mb-8">Регистрация пользователей</h2>
         <form>
           <div class="mb-6">
             <label for="username" class="block text-lg font-medium mb-3"
-              >Ваше имя</label
+              >Ваш никнейм</label
             >
             <input
               type="text"
               id="username"
               class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
-              placeholder="Введите ваше имя"
+              placeholder="Введите ваш никнейм"
             />
           </div>
 
