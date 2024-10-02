@@ -1,8 +1,7 @@
 <template>
   <section class="h-screen flex items-center justify-center bg-gray-200">
     <div
-      class="w-full max-w-3xl lg:max-w-7xl flex flex-col lg:flex-row items-center justify-center space-y-6 lg:space-y-0 lg:space-x-6"
-    >
+      class="w-full max-w-3xl lg:max-w-7xl flex flex-col lg:flex-row items-center justify-center space-y-6 lg:space-y-0 lg:space-x-6">
       <div class="w-full lg:w-1/2 p-8 bg-white rounded-xl shadow-xl">
         <h2 class="text-center text-3xl font-bold mb-8">Регистрация</h2>
         <form>
