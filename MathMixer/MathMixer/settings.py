@@ -67,11 +67,11 @@ WSGI_APPLICATION = "MathMixer.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Math_db',
+        'NAME': 'users_db',
         'USER': 'postgres',
-        'PASSWORD': 'kalina2005',
+        'PASSWORD': 'gthcbr12qw34er',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5433',
     }
 }
 
