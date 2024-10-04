@@ -30,18 +30,32 @@
             />
           </div>
 
-          <div
-            class="flex flex-col lg:flex-row justify-between items-center mb-6 text-sm"
-          >
-            <span class="text-[16px] mb-2 lg:mb-0">
-              Еще не зарегистрированы?
-              <router-link to="/register" class="text-[16px] text-blue-500 hover:underline">
-                Регистрация
-              </router-link>
-            </span>
-            <a href="#" class="text-[16px] text-blue-500 hover:underline"
-              >Забыли пароль?</a
-            >
+          <div class="flex justify-between items-start">
+            <div class="mb-6">
+              <span class="text-[16px] mb-2 block">
+                Еще не зарегистрированы?
+              </span>
+              <div class="flex flex-col mb-4">
+                <router-link
+                  to="/register/users"
+                  class="text-[16px] text-blue-500 hover:underline mb-1"
+                >
+                  Регистрация для пользователей
+                </router-link>
+                <router-link
+                  to="/register/agency"
+                  class="text-[16px] text-blue-500 hover:underline"
+                >
+                  Регистрация для организации
+                </router-link>
+              </div>
+            </div>
+
+            <div class="flex justify-center mb-6">
+              <a href="#" class="text-[16px] text-blue-500 hover:underline">
+                Забыли пароль?
+              </a>
+            </div>
           </div>
 
           <div class="flex justify-center">
