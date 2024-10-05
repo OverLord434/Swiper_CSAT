@@ -34,9 +34,11 @@
         </div>
 
         <div>
-          <router-link to="/enter">
-            <img src="../assets/images/profile-icon.svg" alt="Иконка профиля" />
-          </router-link>
+            <button
+                @click="handleProfileClick"
+                class="flex items-center p-2 bg-transparent hover:bg-gray-200 rounded transition duration-300 ease-in-out">
+                <img src="../assets/images/profile-icon.svg" alt="Иконка профиля" class="h-6 w-6" />
+            </button>
         </div>
       </div>
     </div>
@@ -45,8 +47,23 @@
 
 <script>
 export default {
-  name: "AppHeader",
-};
+  name: 'AppHeader',
+  props: {
+    isAuthenticated: {
+      type: Boolean,
+      required: true
+    }
+  },
+  methods: {
+    handleProfileClick() {
+      if (this.isAuthenticated) {
+        this.$router.push({ name: 'ProfileUsers' }); // Переход на страницу профиля
+      } else {
+        this.$router.push({ name: 'Enter' }); // Переход на страницу авторизации
+      }
+    }
+  }
+}
 </script>
 
 <style>

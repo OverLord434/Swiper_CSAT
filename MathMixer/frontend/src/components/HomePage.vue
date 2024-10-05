@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppHeader></AppHeader>
+    <AppHeader :isAuthenticated="isAuthenticated" @navigateToProfile="navigateToProfile"></AppHeader>
     <section
       class="bg-[url('../assets/images/triangle-black.png')] bg-cover bg-center bg-no-repeat min-h-[625px]"
     >
@@ -362,7 +362,8 @@
 <script>
 import AppFooter from './AppFooter.vue';
 import AppHeader from './AppHeader.vue';
-import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { ref } from 'vue'; // Импортируем ref для создания реактивных переменных
 
 export default {
   name: 'HomePage',
@@ -371,6 +372,24 @@ export default {
     AppFooter,
     Swiper,
     SwiperSlide
+  },
+  setup() {
+    const isAuthenticated = ref(false); // Здесь можно установить состояние авторизации
+
+    const navigateToProfile = () => {
+      if (isAuthenticated.value) {
+        // Логика для перехода на страницу профиля
+        this.$router.push({ name: 'ProfileUsers' }); // Предполагается, что у вас настроен маршрут для профиля
+      } else {
+        // Логика для перехода на страницу регистрации или авторизации
+        this.$router.push({ name: 'Enter' }); // Предполагается, что у вас настроен маршрут для авторизации
+      }
+    };
+
+    return {
+      isAuthenticated,
+      navigateToProfile
+    };
   }
 }
 </script>
