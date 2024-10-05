@@ -1,6 +1,5 @@
 <template>
   <div>
-    <AppHeader></AppHeader>
     <section class="bg-[url('../assets/images/triangle-black.png')] bg-cover bg-center min-h-[625px] py-[50px]">
       <div class="max-w-[1200px] mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between items-center mb-[50px]">
@@ -66,20 +65,12 @@
         </div>
       </div>
     </section>
-    <AppFooter></AppFooter>
   </div>
 </template>
 
 <script>
-import AppHeader from "./AppHeader.vue";
-import AppFooter from "./AppFooter.vue";
-
 export default {
   name: "ProfileAgencyPage",
-  components: {
-    AppHeader,
-    AppFooter,
-  },
   data() {
     return {
       isOnline: true, // Пример состояния, которое определяет онлайн статус

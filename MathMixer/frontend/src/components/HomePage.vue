@@ -1,6 +1,5 @@
 <template>
   <div>
-    <AppHeader></AppHeader>
     <section
       class="bg-[url('../assets/images/triangle-black.png')] bg-cover bg-center bg-no-repeat min-h-[625px]"
     >
@@ -360,15 +359,11 @@
 </template>
 
 <script>
-import AppFooter from './AppFooter.vue';
-import AppHeader from './AppHeader.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
 export default {
   name: 'HomePage',
   components: {
-    AppHeader,
-    AppFooter,
     Swiper,
     SwiperSlide
   }

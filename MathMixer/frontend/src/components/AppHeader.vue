@@ -16,7 +16,7 @@
           </ul>
         </nav>
 
-        <div
+        <div v-if="!isSearchHidden" 
           class="flex justify-between items-center w-[532px] bg-[#D9D9D9] rounded-[5px] px-[7px]"
         >
           <input
@@ -46,6 +46,11 @@
 <script>
 export default {
   name: "AppHeader",
+  computed: {
+    isSearchHidden() {
+      return this.$route.path === '/product';
+    }
+  }
 };
 </script>
 

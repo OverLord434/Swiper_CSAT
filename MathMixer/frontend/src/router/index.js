@@ -5,6 +5,7 @@ import EnterPage from '@/components/EnterPage.vue'
 import RegisterAgencyPage from '@/components/RegisterAgencyPage.vue'
 import ProfileAgencyPage from '@/components/ProfileAgencyPage.vue'
 import ProfileUsersPage from '@/components/ProfileUsersPage.vue'
+import ProductDiscussionPage from '@/components/ProductDiscussionPage.vue'
 
 const routes = [
   {
@@ -41,6 +42,12 @@ const routes = [
     path: '/profile/users',
     name: 'ProfileUsers',
     component: ProfileUsersPage
+  },
+
+  {
+    path: '/product',
+    name: 'ProductDiscussion',
+    component: ProductDiscussionPage
   }
 ]
 
