@@ -82,30 +82,19 @@ export default {
   methods: {
     async register() {
       try {
-        // Сначала пытаемся зарегистрироваться
-        await axios.post('http://localhost:8000/auth/register/', {
+        localStorage.removeItem('token');
+        const response = await axios.post('http://127.0.0.1:8000/auth/register/', {
           username: this.username,
           email: this.email,
           password: this.password,
           password2: this.password2,
         });
 
-        // Если регистрация успешна, сразу авторизуемся
-        const loginResponse = await axios.post('http://localhost:8000/auth/login/', {
-          username: this.username,
-          password: this.password,
-        });
-
-        // После успешного логина сохраняем токен и перенаправляем на главную страницу
-        localStorage.setItem('token', loginResponse.data.token.access); // Сохранение токена
-        this.$router.push('/'); // Перенаправление на главную страницу
+        // Сохраняем токен в localStorage после успешной регистрации
+        localStorage.setItem('token', response.data.token.access);
+        this.$router.push('/');
       } catch (error) {
-        // Обработка ошибок
-        if (error.response) {
-          this.error = error.response.data;
-        } else {
-          this.error = 'Произошла ошибка. Попробуйте еще раз.';
-        }
+        this.error = error.response ? error.response.data : 'Произошла ошибка. Попробуйте еще раз.';
       }
     },
   },

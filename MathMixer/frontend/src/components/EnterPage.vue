@@ -101,7 +101,7 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await axios.post('http://localhost:8000/auth/login/', this.form)
+        const response = await axios.post(' http://127.0.0.1:8000/auth/login/', this.form)
         localStorage.setItem('token', response.data.token.access)
         this.$router.push('/')
       } catch (error) {

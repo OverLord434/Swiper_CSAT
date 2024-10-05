@@ -37,6 +37,7 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, data):
         username = data.get("username", "")
         password = data.get("password", "")
+        print("Входные данные:", data)  # Логируем входные данные
 
         if username and password:
             user = authenticate(username=username, password=password)
