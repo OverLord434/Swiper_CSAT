@@ -1,6 +1,5 @@
 <template>
     <div>
-        <AppHeader />
         <section class="bg-gray-50 py-10">
             <div class="max-w-[1200px] mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -121,20 +120,12 @@
                 </div>
             </div>
         </section>
-        <AppFooter />
     </div>
 </template>
 
 <script>
-import AppHeader from "./AppHeader.vue";
-import AppFooter from "./AppFooter.vue";
-
 export default {
     name: "ProductDiscussionPage",
-    components: {
-        AppHeader,
-        AppFooter,
-    },
     data() {
         return {
             reviews: [], // Инициализация отзывов как пустого массива
@@ -154,7 +145,7 @@ export default {
 
             const newReview = {
                 id: this.reviews.length + 1,
-                author: "Пользователь", // Плейсхолдер для автора
+                author: "Пользователь", 
                 text: this.newReview.text,
                 rating: this.newReview.rating,
                 date: new Date().toLocaleString(),
