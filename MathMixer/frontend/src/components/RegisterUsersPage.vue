@@ -4,16 +4,18 @@
       class="w-full max-w-3xl lg:max-w-7xl flex flex-col lg:flex-row items-center justify-center space-y-6 lg:space-y-0 lg:space-x-6">
       <div class="w-full lg:w-1/2 p-8 bg-white rounded-xl shadow-xl">
         <h2 class="text-center text-3xl font-bold mb-8">Регистрация пользователей</h2>
-        <form>
+        <form @submit.prevent="register">
           <div class="mb-6">
             <label for="username" class="block text-lg font-medium mb-3"
               >Ваш никнейм</label
             >
             <input
+              v-model="form.username"
               type="text"
               id="username"
               class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
               placeholder="Введите ваш никнейм"
+              required
             />
           </div>
 
@@ -22,10 +24,12 @@
               >Ваш Email</label
             >
             <input
+              v-model="form.email"
               type="email"
               id="email"
               class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
               placeholder="Введите ваш email"
+              required
             />
           </div>
 
@@ -34,10 +38,12 @@
               >Пароль</label
             >
             <input
+              v-model="form.password"
               type="password"
               id="password"
               class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
               placeholder="Введите пароль"
+              required
             />
           </div>
 
@@ -46,10 +52,12 @@
               >Повторите пароль</label
             >
             <input
+              v-model="form.password2"
               type="password"
               id="confirmPassword"
               class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
               placeholder="Повторите пароль"
+              required
             />
           </div>
 
@@ -76,6 +84,7 @@
             </button>
           </div>
         </form>
+        {{ error }}
       </div>
 
       <div class="hidden lg:block lg:w-1/2">
@@ -90,7 +99,29 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'RegisterPage'
+  data() {
+    return {
+      form: {
+        username: '',
+        email: '',
+        password: '',
+        password2: ''
+      },
+      error: ''
+    }
+  },
+  methods: {
+    async register() {
+      try {
+        await axios.post('http://127.0.0.1:8000/auth/register/users', this.form)
+        this.$router.push('/enter')
+      } catch (error) {
+        this.error = error.response.data
+      }
+    }
+  }
 }
 </script>

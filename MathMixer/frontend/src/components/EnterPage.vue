@@ -5,16 +5,18 @@
     >
       <div class="w-full lg:w-1/2 p-8 bg-white rounded-xl shadow-xl">
         <h2 class="text-center text-3xl font-bold mb-8">Вход</h2>
-        <form>
+        <form @submit.prevent="login">
           <div class="mb-6">
             <label for="username" class="block text-lg font-medium mb-3"
               >Email</label
             >
             <input
-              type="text"
+              v-model="form.username"
+              type="username"
               id="username"
               class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
               placeholder="Введите Email"
+              required
             />
           </div>
 
@@ -23,10 +25,12 @@
               >Пароль</label
             >
             <input
+              v-model="form.password"
               type="password"
               id="password"
               class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
               placeholder="Введите пароль"
+              required
             />
           </div>
 
@@ -67,6 +71,7 @@
             </button>
           </div>
         </form>
+        {{ error }}
       </div>
 
       <div class="hidden lg:block lg:w-1/2">
@@ -81,7 +86,28 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: "EnterPage",
-};
+  data() {
+    return {
+      form: {
+        username: '',
+        password: ''
+      },
+      error: ''
+    }
+  },
+  methods: {
+    async login() {
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/auth/enter/user', this.form)
+        localStorage.setItem('token', response.data.token.access)
+        this.$router.push('/')
+      } catch (error) {
+        this.error = error.response.data.message
+      }
+    }
+  }
+}
 </script>
