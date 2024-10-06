@@ -8,14 +8,14 @@
         <form @submit.prevent="login">
           <div class="mb-6">
             <label for="username" class="block text-lg font-medium mb-3"
-              >Никнейм</label
+              >Никнейм или имя организации</label
             >
             <input
               type="text"
-              id="username"
-              v-model="form.username"
+              id="username_or_nameorganization"
+              v-model="form.username_or_nameorganization"
               class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
-              placeholder="Введите Никнейм"
+              placeholder="Введите Никнейм или имя организации"
               required
             />
           </div>
@@ -92,7 +92,7 @@ export default {
   data() {
     return {
       form: {
-        username: '',
+        username_or_nameorganization: '',
         password: ''
       },
       error: ''
@@ -101,7 +101,7 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await axios.post(' http://127.0.0.1:8000/auth/login/', this.form)
+        const response = await axios.post('http://127.0.0.1:8000/auth/login/', this.form)
         localStorage.setItem('token', response.data.token.access)
         this.$router.push('/')
       } catch (error) {
