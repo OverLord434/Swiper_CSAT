@@ -70,7 +70,7 @@
 
           <div class="flex justify-center">
             <button
-              type="submit"
+              type="submit" id="regBtn"
               class="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-3 px-12 rounded-lg text-lg transition duration-300"
             >
               Зарегистрироваться
@@ -86,12 +86,28 @@
           alt="image-bg"
         />
       </div>
+
+      <div id="modal" class="modal hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="modal-content bg-white rounded-lg shadow-lg p-6 w-96 text-center">
+          <p class="text-lg font-semibold mb-4">Ссылка на подтверждение была отправлена на вашу почту.</p>
+          <router-link id="submitCode" to="/"
+            class="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded-lg transition duration-300">
+            Подтвердить
+          </router-link>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
 export default {
-  name: 'RegisterPage'
+  name: 'RegisterPage',
+  mounted() {
+    document.getElementById('regBtn').addEventListener('click', function () {
+      event.preventDefault();
+      document.getElementById('modal').style.display = 'flex';
+    });
+  }
 }
 </script>

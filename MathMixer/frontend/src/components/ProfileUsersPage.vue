@@ -28,6 +28,12 @@
             >
               Редактировать
             </button>
+            <div class="flex justify-center mt-5">
+              <button
+                class="border-4 border-red-500 bg-transparent rounded-full w-[200px] py-[12px] text-red-500 hover:bg-red-500 hover:text-white transition duration-500">
+                Выйти из аккаунта
+              </button>
+            </div>
           </div>
 
           <div class="w-full md:w-[65%] bg-gray-100 p-[30px] rounded-lg">

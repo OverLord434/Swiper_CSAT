@@ -1,15 +1,15 @@
 <template>
-  <header class="text-[25px] shadow-sm">
+  <header class="shadow-sm min-h-[137px]">
     <div class="max-w-[1360px] mx-auto px-[10px]">
-      <div class="flex justify-between items-center h-[137px]">
-        <div>
+      <div class="flex justify-between items-center h-[137px] flex-wrap">
+        <div class="flex-shrink-0 order-1 logo">
           <a href="#">
             <img src="../assets/images/logo.svg" alt="Логотип сайта" />
           </a>
         </div>
 
-        <nav class="w-[525px]">
-          <ul class="flex justify-between items-center max-w-[525px] menu-list">
+        <nav class="w-full md:w-auto order-2">
+          <ul class="flex justify-between items-center menu-list w-full md:w-[525px]">
             <li><a href="#">Категории</a></li>
             <li><a href="#">Лидеры</a></li>
             <li><a href="#">Добавить</a></li>
@@ -17,7 +17,7 @@
         </nav>
 
         <div v-if="!isSearchHidden" 
-          class="flex justify-between items-center w-[532px] bg-[#D9D9D9] rounded-[5px] px-[7px]"
+          class="flex justify-between items-center w-full md:w-[532px] bg-[#D9D9D9] rounded-[5px] px-[7px] mt-2 md:mt-0 order-3"
         >
           <input
             type="text"
@@ -33,7 +33,7 @@
           </div>
         </div>
 
-        <div>
+        <div class="flex-shrink-0 order-4 profile">
           <router-link to="/enter">
             <img src="../assets/images/profile-icon.svg" alt="Иконка профиля" />
           </router-link>
@@ -55,6 +55,13 @@ export default {
 </script>
 
 <style>
+header {
+  font-size: 25px;
+}
+.menu-list {
+  flex-wrap: wrap; 
+}
+
 .menu-list a {
   opacity: 0.6;
   transition: all 0.3s;
@@ -62,5 +69,41 @@ export default {
 
 .menu-list a:hover {
   opacity: 1;
+}
+
+@media (max-width: 1340px) {
+  header {
+    font-size: 23px;
+  }
+  .search-icon {
+    padding-left: 5px;
+  }
+}
+
+@media (max-width: 768px){
+  header {
+    padding-bottom: 10px;
+    font-size: 19px;
+  }
+  .profile {
+    order: 1;
+  }
+
+  .menu-list {
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 360px) {
+  header {
+    font-size: 15px; 
+  }
+  
+  .logo {
+    width: 90px;
+  }
+  .profile {
+    width: 25px;
+  }
 }
 </style>

@@ -1,63 +1,56 @@
 <template>
   <div>
     <section
-      class="bg-[url('../assets/images/triangle-black.png')] bg-cover bg-center bg-no-repeat min-h-[625px]"
-    >
-      <div class="max-w-[1360px] mx-auto px-[10px]">
-        <div class="flex justify-between items-center pt-[87px]">
-          <div class="flex flex-col">
-            <h1 class="text-[64px] mb-[56px] leading-[52px]">Кто мы</h1>
-            <p class="max-w-[453px] min-h-[143px] mb-[46px]">
+      class="bg-[url('../assets/images/triangle-black.png')] bg-cover bg-center bg-no-repeat min-h-[625px] who_section">
+      <div class="max-w-[1360px] mx-auto px-2">
+        <div class="flex flex-col md:flex-row justify-between items-center pt-[87px]">
+          <div class="flex flex-col md:w-1/2 items-center md:items-start">
+            <h1 class="text-[64px] mb-[56px] leading-[52px] text-center md:text-left section-title">Кто мы</h1>
+            <p class="max-w-[453px] min-h-[143px] mb-[46px] text-center md:text-left section-paragraph">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam iusto sed fugiat sunt
               maxime neque quisquam libero ea nobis, corporis id tempora. Non placeat cumque odio
               facilis labore velit porro? Lorem, ipsum. Lorem ipsum dolor sit amet consectetur
               adipisicing elit. Esse neque corrupti omnis cumque non ea adipisci perspiciatis
               exercitationem nesciunt libero.
             </p>
-            <a
-              href="#"
-              class="border-4 border-[#FCDE00] bg-transparent rounded-[20px] w-[252px] text-center uppercase transition duration-700 ease-in-out text-[#FCDE00] py-[26px] hover:bg-[#FCDE00] hover:text-white"
-              >Читать более</a
-            >
+            <a href="#"
+              class="border-4 border-[#FCDE00] bg-transparent rounded-[20px] w-[252px] text-center uppercase transition duration-700 ease-in-out text-[#FCDE00] py-[26px] hover:bg-[#FCDE00] hover:text-white section-button mb-6">
+              Читать более
+            </a>
           </div>
-          <div class="">
-            <img src="../assets/images/notebook.png" alt="Ноутбук" class="w-[600px]" />
+          <div class="md:w-1/2 flex justify-center md:justify-end mt-6 md:mt-0">
+            <img src="../assets/images/notebook.png" alt="Ноутбук" class="w-full max-w-[600px] section-image" />
           </div>
         </div>
       </div>
     </section>
 
-    <section class="relative min-h-[713px] overflow-hidden">
-      <img class="absolute right-0 top-0" src="../assets/images/triangle-yellow.png" alt="" />
+
+    <section class="relative min-h-[713px] overflow-hidden pb-[30px]">
+      <img class="absolute right-0 top-0 h-full z-2" src="../assets/images/triangle-yellow.png" alt="" />
       <img class="absolute bottom-0 left-0" src="../assets/images/min_triangle-black.png" alt="" />
 
-      <div class="max-w-[1360px] mx-auto px-[10px] relative">
-        <p class="text-[64px] leading-[52px] pt-[70px] mb-[72px]">Как мы работаем</p>
+      <div class="max-w-[1360px] mx-auto px-[10px] relative z-10">
+        <p class="text-[64px] leading-[52px] pt-[70px] mb-[72px] slider-title">Как мы работаем</p>
 
-        <div class="flex justify-between">
+        <div class="flex justify-between relative z-12">
           <div>
-            <p class="max-w-[413px] mb-[226px] text-justify">
+            <p class="max-w-[413px] mb-[226px] text-justify slider-paragraph">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum totam consequuntur
               harum praesentium maxime quidem saepe quae ut cum beatae architecto, nostrum commodi
               laudantium? Atque laboriosam accusantium architecto aut enim!
             </p>
             <div
-              class="border-4 border-[#FCDE00] bg-transparent rounded-[20px] w-[252px] text-center uppercase transition duration-700 ease-in-out text-[#FCDE00] py-[26px] hover:bg-[#FCDE00] hover:text-white"
-            >
+              class="border-4 border-black md:border-[#FCDE00] bg-transparent rounded-[20px] w-[252px] text-center uppercase transition duration-700 ease-in-out text-black md:text-[#FCDE00] py-[26px] hover:bg-[#FCDE00] hover:text-white slider-btn">
               <a href="#">Перейти к решению</a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Контейнер для слайдера с вертикальным центрированием -->
-      <div class="absolute top-[65px] right-0 h-full flex items-center w-[1000px] overflow-visible">
-        <swiper
-          :slides-per-view="1.5"
-          :space-between="-140"
-          :loop="true"
-          :autoplay="{ delay: 2000, disableOnInteraction: false }"
-        >
+      <div class="absolute top-[65px] right-0 h-full flex items-center w-[1000px] overflow-visible slider-container">
+        <swiper :slides-per-view="1.5" :space-between="-50" :loop="true"
+          :autoplay="{ delay: 2000, disableOnInteraction: false }">
           <swiper-slide>
             <img src="../assets/images/slide.png" alt="Slide 1" class="w-full" />
           </swiper-slide>
@@ -71,290 +64,59 @@
       </div>
     </section>
 
-    <section class="relative pb-[149px]">
+    <section class="relative pb-[149px] responsive-section">
       <img class="absolute top-0 left-0 z-10" src="../assets/images/triangle-black-2.png" alt="" />
-      <img
-        class="absolute top-0 right-0 z-10"
-        src="../assets/images/triangle-yellow-2.png"
-        alt=""
-      />
-      <img
-        class="absolute bottom-0 left-0 z-10"
-        src="../assets/images/min_triangle-yellow.png"
-        alt=""
-      />
+      <img class="absolute top-0 right-0 z-10" src="../assets/images/triangle-yellow-2.png" alt="" />
+      <img class="absolute bottom-0 left-0 z-10" src="../assets/images/min_triangle-yellow.png" alt="" />
 
-      <div class="max-w-[1360px] mx-auto relative z-10">
-        <div class="flex justify-between gap-[20px]">
-          <!-- Левая колонка - Топ товары -->
-          <div class="bg-[#D9D9D9] px-[16px] pb-[36px] flex-shrink-0 w-[256px] rounded-[5px]">
-            <h2 class="font-normal text-[38px] mb-[35px] mt-[60px]">Топ товары</h2>
-            <div class="space-y-4">
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Центральная колонка - Вопросы участников -->
-          <div class="bg-[#D9D9D9] px-[30px] pb-[60px] flex-grow w-[808px] rounded-[5px]">
-            <h2 class="font-normal text-[38px] mb-[35px] mt-[60px]">Вопросы участников</h2>
-            <div class="mb-[49px] flex">
-              <input
-                type="text"
-                placeholder="Задайте свой вопрос здесь"
-                class="flex-grow px-[17px] py-[16px] pr-0 border border-yellow-400 text-[25px] font-normal bg-transparent outline-none"
-              />
-              <button class="bg-[#FCDE00] text-[25px] font-normal text-white px-[11px]">
-                Задать вопрос
-              </button>
-            </div>
-            <div class="space-y-4">
-              <div class="bg-white px-[29px] py-[27px] flex items-center rounded-[5px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-12 h-12 rounded-full"
-                />
-                <p class="ml-[38px] flex-grow text-[18px] font-normal">
-                  Почему регулярно происходит кратковременная потеря стабильности
-                  интернет-соединения?
-                </p>
-                <button>
-                  <img src="../assets/images/message-icon.svg" alt="icon" class="w-8 h-8" />
-                </button>
-              </div>
-
-              <div class="bg-white px-[29px] py-[27px] flex items-center rounded-[5px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-12 h-12 rounded-full"
-                />
-                <p class="ml-[38px] flex-grow text-[18px] font-normal">
-                  Почему регулярно происходит кратковременная потеря стабильности
-                  интернет-соединения?
-                </p>
-                <button>
-                  <img src="../assets/images/message-icon.svg" alt="icon" class="w-8 h-8" />
-                </button>
-              </div>
-
-              <div class="bg-white px-[29px] py-[27px] flex items-center rounded-[5px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-12 h-12 rounded-full"
-                />
-                <p class="ml-[38px] flex-grow text-[18px] font-normal">
-                  Почему регулярно происходит кратковременная потеря стабильности
-                  интернет-соединения?
-                </p>
-                <button>
-                  <img src="../assets/images/message-icon.svg" alt="icon" class="w-8 h-8" />
-                </button>
-              </div>
-
-              <div class="bg-white px-[29px] py-[27px] flex items-center rounded-[5px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-12 h-12 rounded-full"
-                />
-                <p class="ml-[38px] flex-grow text-[18px] font-normal">
-                  Почему регулярно происходит кратковременная потеря стабильности
-                  интернет-соединения?
-                </p>
-                <button>
-                  <img src="../assets/images/message-icon.svg" alt="icon" class="w-8 h-8" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Правая колонка - Лидеры -->
-          <div class="bg-[#D9D9D9] px-[16px] pb-[36px] flex-shrink-0 w-[256px] rounded-[5px]">
-            <h2 class="font-normal text-[38px] mb-[35px] mt-[60px] text-center">Лидеры</h2>
-            <div class="space-y-4">
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-
-              <div class="bg-white px-[17px] py-[16px] flex items-center rounded-[3px] gap-[17px]">
-                <img
-                  src="../assets/images/avatar.png"
-                  alt="Avatar"
-                  class="w-[36px] h-[36px] rounded-full"
-                />
-                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="min-h-[708px] relative">
-      <img class="absolute top-0 left-0 z-0" src="../assets/images/triangle-yellow-3.png" alt="" />
-      <img class="absolute top-0 right-0 z-0" src="../assets/images/triangle-black-3.png" alt="" />
-
-      <div class="text-center">
-        <span class="text-[64px] leading-[52px]">Что говорит клиент</span>
-      </div>
-
-      <div
-        class="absolute left-[400px] flex items-center mx-auto max-w-[973px] pt-[87px] gap-[80px] z-11"
-      >
-        <div class="relative w-[213px] h-[213px] mx-auto mt-28">
+      <div class="max-w-[1360px] mx-auto px-2 relative z-10">
+        <div class="flex flex-wrap justify-center gap-3">
           <div
-            class="w-full h-full transform rotate-45 border-[20px] border-[#D9D9D9] overflow-hidden"
-          >
-            <img
-              src="../assets/images/client-photo.png"
-              alt="Фото клиента"
-              class="w-full h-full object-cover object-center -rotate-45"
-            />
+            class="bg-[#D9D9D9] flex-shrink-0 w-[256px] flex-grow transition-all duration-300 hover:flex-grow-2 rounded-[5px] px-4 pb-8 responsive-card">
+            <h2 class="font-normal text-[38px] mb-8 mt-8 responsive-title">Топ товары</h2>
+            <div class="product-list">
+              <div class="bg-white px-4 py-2 flex items-center rounded-[3px] gap-4">
+                <img src="../assets/images/avatar.png" alt="Avatar"
+                  class="w-[36px] h-[36px] rounded-full responsive-avatar" />
+                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="mt-10">
-          <p class="max-w-[650px] text-[20px] font-medium pt-[70px]">
-            «В старом мире вы посвящали 30% своего времени созданию первоклассного обслуживания и
-            70% времени кричали об этом. В новом мире все наоборот».
-          </p>
-          <p class="pt-[3px] font-normal">Лапаев А.С. руководитель</p>
+          <div
+            class="bg-[#D9D9D9] flex-grow w-full md:w-[808px] transition-all duration-300 rounded-[5px] px-6 pb-8 responsive-card">
+            <h2 class="font-normal text-[38px] mb-8 mt-8 responsive-title">Вопросы участников</h2>
+            <div class="mb-12 flex">
+              <input type="text" placeholder="Задайте свой вопрос здесь"
+                class="flex-grow px-4 py-2 border border-yellow-400 text-[25px] font-normal bg-transparent outline-none responsive-input" />
+              <button class="bg-[#FCDE00] text-[25px] font-normal text-white px-4 responsive-button">Задать
+                вопрос</button>
+            </div>
+            <div class="question-list">
+              <div class="bg-white px-6 py-4 flex items-center rounded-[5px]">
+                <img src="../assets/images/avatar.png" alt="Avatar" class="w-12 h-12 rounded-full responsive-avatar" />
+                <p class="ml-4 flex-grow text-[18px] font-normal">Почему регулярно происходит кратковременная потеря
+                  стабильности интернет-соединения?</p>
+                <button>
+                  <img src="../assets/images/message-icon.svg" alt="icon" class="w-8 h-8 responsive-icon" />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-[#D9D9D9] flex-shrink-0 w-[256px] flex-grow transition-all duration-300 hover:flex-grow-2 rounded-[5px] px-4 pb-8 responsive-card">
+            <h2 class="font-normal text-[38px] mb-8 mt-8 text-center responsive-title">Лидеры</h2>
+            <div class="leader-list">
+              <div class="bg-white px-4 py-2 flex items-center rounded-[3px] gap-4">
+                <img src="../assets/images/avatar.png" alt="Avatar"
+                  class="w-[36px] h-[36px] rounded-full responsive-avatar" />
+                <p class="text-[13px] font-normal">Вопрос по сборке ПК, ждет!</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-
-    <AppFooter></AppFooter>
   </div>
 </template>
 
@@ -369,3 +131,305 @@ export default {
   }
 }
 </script>
+
+<style>
+@media (max-width: 1335px) {
+  .slider-title {
+    font-size: 48px;
+    line-height: 40px;
+  }
+
+  .slider-paragraph {
+    max-width: 350px;
+    margin-bottom: 100px;
+  }
+
+  .slider-container {
+    width: 800px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .custom-container {
+    max-width: 100%;
+  }
+
+  .custom-column {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .custom-heading {
+    font-size: 30px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  .custom-input,
+  .custom-button {
+    font-size: 20px;
+  }
+
+  .space-y-4 {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 1085px) {
+  .slider-title {
+    font-size: 40px;
+    line-height: 36px;
+  }
+
+  .slider-paragraph {
+    max-width: 300px;
+    margin-bottom: 80px;
+  }
+
+  .slider-container {
+    width: 700px;
+  }
+}
+
+@media (max-width: 960px) {
+  .slider-title {
+    font-size: 36px;
+    line-height: 32px;
+  }
+
+  .slider-paragraph {
+    max-width: 250px;
+    margin-bottom: 60px;
+  }
+
+  .slider-container {
+    width: 600px;
+  }
+}
+
+@media (max-width: 860px) {
+  .slider-title {
+    font-size: 32px;
+    line-height: 28px;
+  }
+
+  .slider-paragraph {
+    max-width: 220px;
+    margin-bottom: 50px;
+  }
+
+  .slider-container {
+    width: 500px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .who_section {
+    background-color: rgba(255, 255, 255, 0.5);
+    background-blend-mode: overlay;
+  }
+
+  .slider-container {
+    position: relative;
+    top: auto;
+    margin-left: auto;
+    margin-top: 20px;
+  }
+
+  .slider-title {
+    font-size: 40px;
+  }
+
+  .slider-paragraph {
+    max-width: 100%;
+  }
+
+  .client-content {
+    flex-direction: column;
+    align-items: center;
+    left: 0;
+    max-width: 100%;
+    padding-top: 20px;
+  }
+
+  .triangle-yellow,
+  .triangle-black {
+    width: 100%;
+    height: 100%;
+  }
+
+  .title-text {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  .text-content p {
+    text-align: center;
+    padding-top: 10px;
+    
+  }
+
+  .custom-flex {
+    flex-direction: column;
+  }
+
+  .custom-column {
+    padding: 10px;
+  }
+
+  .custom-heading {
+    font-size: 24px;
+  }
+
+  .custom-text {
+    font-size: 12px;
+  }
+
+  .custom-question-text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .responsive-section {
+    padding-bottom: 100px;
+  }
+
+  .responsive-card {
+    padding: 8px;
+  }
+
+  .responsive-title {
+    font-size: 24px;
+    margin-bottom: 4px;
+    margin-top: 4px;
+  }
+
+  .responsive-input {
+    font-size: 16px;
+    padding: 6px;
+  }
+
+  .responsive-button {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+
+  .product-list,
+  .question-list,
+  .leader-list {
+    margin-bottom: 8px;
+  }
+
+  .responsive-avatar {
+    width: 24px;
+    height: 24px;
+  }
+
+  .responsive-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 500px) {
+  .section-title {
+    font-size: 36px;
+    margin-bottom: 24px;
+    line-height: 40px;
+  }
+
+  .section-paragraph {
+    max-width: 90%;
+    min-height: 100px;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+
+  .section-button {
+    width: 180px;
+    padding: 16px;
+  }
+
+  .section-image {
+    max-width: 300px;
+  }
+
+  .slider-btn {
+    font-size: 14px;
+    width: 200px;
+    border: solid 2px;
+  }
+
+  .title-text {
+    font-size: 28px;
+  }
+
+  .client-content {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-heading {
+    font-size: 20px;
+  }
+
+  .custom-item,
+  .custom-question-item {
+    padding: 10px;
+  }
+
+  .custom-input {
+    padding: 10px;
+  }
+
+  .custom-button {
+    padding: 10px;
+  }
+
+  .custom-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 368px) {
+  .slider-title {
+    font-size: 22px;
+    line-height: 40px;
+    padding-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  .slider-paragraph {
+    max-width: 100%;
+    margin-bottom: 40px;
+    font-size: 14px;
+  }
+
+  .border-4 {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .slider-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .swiper-slide img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 60px;
+  }
+
+  .slider-btn {
+    font-size: 12px;
+    width: 200px;
+    margin: 0 auto;
+    border: solid 2px;
+  }
+}
+</style>
