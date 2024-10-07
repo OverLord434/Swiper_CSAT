@@ -9,8 +9,11 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from .serializers import RegisterSerializer, LoginSerializer
 
+from django.contrib.auth.models import Group
+
 # Регистрация
 class RegisterView(APIView):
+    queryset = Group.objects.all()
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -33,3 +36,4 @@ class LoginView(APIView):
                 return Response({"token": tokens}, status=status.HTTP_200_OK)
             return Response({"message": "Неверные данные."}, status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+

@@ -8,14 +8,14 @@
         <form @submit.prevent="login">
           <div class="mb-6">
             <label for="username" class="block text-lg font-medium mb-3"
-              >Email</label
+              >Ваш никнейм</label
             >
             <input
               v-model="form.username"
               type="username"
               id="username"
               class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
-              placeholder="Введите Email"
+              placeholder="Введите никнейм"
               required
             />
           </div>
@@ -103,7 +103,7 @@ export default {
       try {
         const response = await axios.post('http://127.0.0.1:8000/auth/enter/user', this.form)
         localStorage.setItem('token', response.data.token.access)
-        this.$router.push('/')
+        this.$router.push('/profile')
       } catch (error) {
         this.error = error.response.data.message
       }

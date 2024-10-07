@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
@@ -8,10 +8,11 @@ from django.contrib.auth import authenticate
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
+    group_name = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'password2', 'email', 'first_name', 'last_name')
+        fields = ('username', 'password', 'password2', 'email', 'group_name')
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
@@ -19,11 +20,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
+        group_name  = validated_data.pop('group_name')
         user = User.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
         )
         user.set_password(validated_data['password'])
+        group = Group.objects.get(name=group_name)
+        user.groups.add(group)
         user.save()
         return user
 

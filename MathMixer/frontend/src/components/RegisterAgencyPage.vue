@@ -5,16 +5,18 @@
       >
         <div class="w-full lg:w-1/2 p-8 bg-white rounded-xl shadow-xl">
           <h2 class="text-center text-3xl font-bold mb-8">Регистрация организации</h2>
-          <form>
+          <form @submit.prevent="submitForm">
             <div class="mb-6">
               <label for="username" class="block text-lg font-medium mb-3"
                 >Ваше ФИО</label
               >
               <input
+                v-model="form.username"
                 type="text"
                 id="username"
                 class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
                 placeholder="Введите ваше ФИО"
+                required
               />
             </div>
   
@@ -23,10 +25,12 @@
                 >Ваш Email организации</label
               >
               <input
+                v-model="form.email"
                 type="email"
                 id="email"
                 class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
                 placeholder="Введите ваш email"
+                required
               />
             </div>
   
@@ -35,10 +39,12 @@
                 >Пароль</label
               >
               <input
+                v-model="form.password"
                 type="password"
                 id="password"
                 class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
                 placeholder="Введите пароль"
+                required
               />
             </div>
   
@@ -47,15 +53,18 @@
                 >Повторите пароль</label
               >
               <input
+                v-model="form.password2"
                 type="password"
                 id="confirmPassword"
                 class="w-full px-5 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-lg"
                 placeholder="Повторите пароль"
+                required
               />
             </div>
   
             <div class="mb-6 flex items-center">
               <input
+                v-model="acceptedTerms"
                 type="checkbox"
                 id="terms"
                 class="w-4 h-4 border border-gray-300 rounded text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
@@ -77,8 +86,9 @@
               </button>
             </div>
           </form>
+          <br>
+          {{ error }}
         </div>
-  
         <div class="hidden lg:block lg:w-1/2">
           <img
             src="../assets/images/regenter-bg.png"
@@ -90,8 +100,39 @@
     </section>
   </template>
   
-  <script>
-  export default {
-    name: 'RegisterPage'
+<script>
+import axios from 'axios'
+
+export default {
+  data() {
+    return {
+      form: {
+        username: '',
+        email: '',
+        password: '',
+        password2: '',
+        group_name: ''
+      },
+      acceptedTerms: false,
+      error: '',
+    }
+  },
+methods: {
+    submitForm() {
+      this.register()},
+    async register() {
+      try {
+        if (!this.acceptedTerms) {
+          this.error = "Вы должны принять условия лицензионного договора";
+        } else {
+          this.form.group_name = 'CompanyUsers';
+          await axios.post('http://127.0.0.1:8000/auth/register/users', this.form);
+          this.$router.push('/profile');
+        }
+      } catch (error) {
+        this.error = error.response.data;
+      }
+    }
   }
-  </script>
+}
+</script>

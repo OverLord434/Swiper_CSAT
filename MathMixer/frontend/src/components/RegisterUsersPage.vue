@@ -4,7 +4,7 @@
       class="w-full max-w-3xl lg:max-w-7xl flex flex-col lg:flex-row items-center justify-center space-y-6 lg:space-y-0 lg:space-x-6">
       <div class="w-full lg:w-1/2 p-8 bg-white rounded-xl shadow-xl">
         <h2 class="text-center text-3xl font-bold mb-8">Регистрация пользователей</h2>
-        <form @submit.prevent="register">
+        <form @submit.prevent="submitForm">
           <div class="mb-6">
             <label for="username" class="block text-lg font-medium mb-3"
               >Ваш никнейм</label
@@ -63,6 +63,7 @@
 
           <div class="mb-6 flex items-center">
             <input
+              v-model="acceptedTerms"
               type="checkbox"
               id="terms"
               class="w-4 h-4 border border-gray-300 rounded text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
@@ -74,7 +75,6 @@
               >
             </label>
           </div>
-
           <div class="flex justify-center">
             <button
               type="submit"
@@ -84,6 +84,7 @@
             </button>
           </div>
         </form>
+        <br>
         {{ error }}
       </div>
 
@@ -108,18 +109,27 @@ export default {
         username: '',
         email: '',
         password: '',
-        password2: ''
+        password2: '',
+        group_name: ''
       },
-      error: ''
+      acceptedTerms: false,
+      error: '',
     }
   },
-  methods: {
+methods: {
+    submitForm() {
+      this.register()},
     async register() {
       try {
-        await axios.post('http://127.0.0.1:8000/auth/register/users', this.form)
-        this.$router.push('/enter')
+        if (!this.acceptedTerms) {
+          this.error = "Вы должны принять условия лицензионного договора";
+        } else {
+          this.form.group_name = 'ClassicUsers';
+          await axios.post('http://127.0.0.1:8000/auth/register/users', this.form);
+          this.$router.push('/profile');
+        }
       } catch (error) {
-        this.error = error.response.data
+        this.error = error.response.data;
       }
     }
   }
