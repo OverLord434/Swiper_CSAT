@@ -22,12 +22,12 @@
               <p class="text-gray-600 text-sm">Средняя оценка</p>
             </div>
             <button id="EditProfileBtn"
-              class="border-4 border-yellow-400 bg-transparent rounded-full w-full md:w-48 py-3 text-yellow-400 hover:bg-yellow-400 hover:text-white transition duration-500">
+              class="border-4 border-yellow-400 bg-transparent rounded-full w-[180px] md:w-[195px] py-3 text-yellow-400 hover:bg-yellow-400 hover:text-white transition duration-500">
               Редактировать
             </button>
             <div class="flex justify-center mt-5">
               <button
-                class="border-4 border-red-500 bg-transparent rounded-full w-full md:w-48 py-3 text-red-500 hover:bg-red-500 hover:text-white transition duration-500">
+                class="border-4 border-red-500 bg-transparent rounded-full w-[180px] md:w-[195px] py-3 text-red-500 hover:bg-red-500 hover:text-white transition duration-500">
                 Выйти из аккаунта
               </button>
             </div>
