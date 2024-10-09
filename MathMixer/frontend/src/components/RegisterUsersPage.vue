@@ -17,6 +17,9 @@
               placeholder="Введите ваш никнейм"
               required
             />
+            <div class="error-message">
+                {{ usernameError }}
+            </div>
           </div>
 
           <div class="mb-6">
@@ -31,6 +34,9 @@
               placeholder="Введите ваш email"
               required
             />
+            <div v-if="emailError" class="error-message">
+                {{ emailError }}
+            </div>
           </div>
 
           <div class="mb-6">
@@ -59,6 +65,9 @@
               placeholder="Повторите пароль"
               required
             />
+            <div class="error-message">
+                {{ passwordError }}
+            </div>
           </div>
 
           <div class="mb-6 flex items-center">
@@ -85,9 +94,10 @@
           </div>
         </form>
         <br>
-        {{ error }}
+        <div class="error-message">
+                {{ error }}
+        </div>
       </div>
-
       <div class="hidden lg:block lg:w-1/2">
         <img
           src="../assets/images/regenter-bg.png"
@@ -110,28 +120,49 @@ export default {
         email: '',
         password: '',
         password2: '',
-        group_name: ''
       },
       acceptedTerms: false,
+      errors: '',
       error: '',
+      usernameError: '',
+      passwordError: '',
+      emailError: '',
     }
   },
 methods: {
     submitForm() {
+      this.error = '',
+      this.errors = '',
       this.register()},
     async register() {
       try {
         if (!this.acceptedTerms) {
           this.error = "Вы должны принять условия лицензионного договора";
         } else {
-          this.form.group_name = 'ClassicUsers';
           await axios.post('http://127.0.0.1:8000/auth/register/users', this.form);
           this.$router.push('/profile');
         }
       } catch (error) {
-        this.error = error.response.data;
+        if (error.response && error.response.data) {
+          if (error.response.data.username) {
+            this.usernameError = error.response.data.username[0];
+          }
+          if (error.response.data.password) {
+            this.passwordError = error.response.data.password[0];
+          }
+          if (error.response.data.email) {
+            this.emailError = error.response.data.email[0];
+          } else {
+            this.errors = error.response.data;}
+        }
       }
     }
   }
 }
 </script>
+
+<style scoped>
+.error-message {
+  color: red;
+}
+</style>

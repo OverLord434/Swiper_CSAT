@@ -46,12 +46,6 @@
                 >
                   Регистрация для пользователей
                 </router-link>
-                <router-link
-                  to="/register/agency"
-                  class="text-[16px] text-blue-500 hover:underline"
-                >
-                  Регистрация для организации
-                </router-link>
               </div>
             </div>
 
@@ -71,7 +65,9 @@
             </button>
           </div>
         </form>
-        {{ error }}
+        <div class="error-message">
+          {{ error }}
+        </div>
       </div>
 
       <div class="hidden lg:block lg:w-1/2">
@@ -95,19 +91,31 @@ export default {
         username: '',
         password: ''
       },
+      errors: '',
       error: ''
     }
   },
   methods: {
     async login() {
       try {
+        if (!this.acceptedTerms) {
+          this.error = "Неверные учетные данные";
+        } else {
         const response = await axios.post('http://127.0.0.1:8000/auth/enter/user', this.form)
         localStorage.setItem('token', response.data.token.access)
         this.$router.push('/profile')
+        }
       } catch (error) {
-        this.error = error.response.data.message
+        if (error.response && error.response.data) {
+          this.errors = error.response.data;}
       }
     }
   }
 }
 </script>
+
+<style scoped>
+.error-message {
+  color: red;
+}
+</style>
