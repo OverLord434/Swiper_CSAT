@@ -7,13 +7,12 @@ from django.contrib.auth import authenticate
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .serializers import RegisterSerializer, LoginSerializer
+from .serializers import RegisterSerializer, LoginSerializer, UserSerializer, ProfileSerializer
+from rest_framework.permissions import IsAuthenticated
 
-from django.contrib.auth.models import Group
 
 # Регистрация
 class RegisterView(APIView):
-    queryset = Group.objects.all()
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -37,3 +36,18 @@ class LoginView(APIView):
             return Response({"message": "Неверные данные."}, status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class UserDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
+class ProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        serializer = ProfileSerializer(user)
+        return Response(serializer.data)

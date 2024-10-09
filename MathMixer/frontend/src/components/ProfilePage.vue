@@ -10,16 +10,17 @@
               alt="User Avatar"
               class="w-[200px] h-[200px] rounded-full mb-[20px] border-4 border-yellow-400"
             />
-            <h2 class="text-[32px] font-semibold mb-[10px]">Иван Иванов</h2>
-            <p class="text-[19px] font-bold text-gray-600">Онлайн</p>
-            <p class="text-[20px] font-light text-gray-600 mb-[30px]">ivan@list.ru</p>
+             <h2 class="text-[32px] font-semibold mb-[10px]">{{ user.username }}</h2>
+             <p class="text-[14px] text-gray-600">Зарегистрирован {{ formattedDate(user.date_joined) }}</p>
+             <p class="text-[19px] font-bold text-gray-600">Онлайн</p>
+             <p class="text-[20px] font-light text-gray-600 mb-[30px]">{{ user.email }}</p>
             <button
               class="border-4 border-yellow-400 bg-transparent rounded-full w-[200px] py-[12px] text-yellow-400 hover:bg-yellow-400 hover:text-white transition duration-500"
             >
               Редактировать
             </button>
             <div class="flex justify-center mt-5">
-             <button
+             <button @click="logout"
                class="border-4 border-red-500 bg-transparent rounded-full w-[200px] py-[12px] text-red-500 hover:bg-red-500 hover:text-white transition duration-500">
                Выйти из аккаунта
              </button>
@@ -53,14 +54,39 @@
 
 
 <script>
-import AppHeader from "./AppHeader.vue";
-import AppFooter from "./AppFooter.vue";
+import axios from 'axios';
 
 export default {
-  name: "ProfilePage",
-  components: {
-    AppHeader,
-    AppFooter,
+  data() {
+    return {
+      user: {},
+    }
   },
-};
+  methods: {
+    logout() {
+      localStorage.removeItem('token');
+      this.$router.push('/');
+    },
+    async getUserDetails() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/auth/profile/date', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        this.user = response.data;
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    },
+    formattedDate(dateString) {
+      const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+      return new Date(dateString).toLocaleDateString('ru-RU', options); // Форматирует дату как ГГГГ-ММ-ДД
+    }
+  },
+  mounted() {
+    this.getUserDetails();
+  }
+}
 </script>
+

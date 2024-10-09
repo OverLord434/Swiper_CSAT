@@ -65,9 +65,8 @@
             </button>
           </div>
         </form>
-        <div class="error-message">
-          {{ error }}
-        </div>
+        <div v-if="error" class="error-message">{{ error }}</div>
+  </div>
       </div>
 
       <div class="hidden lg:block lg:w-1/2">
@@ -76,7 +75,6 @@
           class="w-170px h-auto rounded-xl"
           alt="image-bg"
         />
-      </div>
     </div>
   </section>
 </template>
@@ -98,16 +96,19 @@ export default {
   methods: {
     async login() {
       try {
-        if (!this.acceptedTerms) {
-          this.error = "Неверные учетные данные";
-        } else {
         const response = await axios.post('http://127.0.0.1:8000/auth/enter/user', this.form)
         localStorage.setItem('token', response.data.token.access)
-        this.$router.push('/profile')
-        }
+        this.$router.push('/')
       } catch (error) {
         if (error.response && error.response.data) {
-          this.errors = error.response.data;}
+          if (error.response.data.non_field_errors) {
+            this.error = error.response.data.non_field_errors[0];
+          } else {
+            this.error = "Произошла ошибка";
+          }
+        } else {
+          this.error = "Произошла ошибка";
+        }
       }
     }
   }

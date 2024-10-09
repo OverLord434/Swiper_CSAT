@@ -1,20 +1,18 @@
 <template>
   <header class="text-[25px] shadow-sm">
     <div class="max-w-[1360px] mx-auto px-[10px]">
-      <div class="flex justify-between items-center h-[137px]">
+      <div  class="flex justify-between items-center h-[137px]">
         <div>
           <a href="#">
             <img src="../assets/images/logo.svg" alt="Логотип сайта" />
           </a>
         </div>
 
-        <nav class="w-[525px]">
-          <ul class="flex justify-between items-center max-w-[525px] menu-list">
-            <li><a href="#">Категории</a></li>
-            <li><a href="#">Лидеры</a></li>
-            <li><a href="#">Добавить</a></li>
-          </ul>
-        </nav>
+            <nav class="w-[525px]">
+              <ul v-if="isSuperUser" class="flex justify-between items-center max-w-[525px] menu-list">
+                <li><a href="#">Добавить</a></li>
+              </ul>
+            </nav>
 
         <div
           class="flex justify-between items-center w-[532px] bg-[#D9D9D9] rounded-[5px] px-[7px]"
@@ -44,9 +42,37 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-  name: "AppHeader",
-};
+  data() {
+    return {
+      user: {
+        is_superuser: false,
+        // другие поля, если нужно
+      },
+      isSuperUser: false
+    }
+  },
+  methods: {
+    async getUserDetails() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/auth/appheader/user', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        this.user = response.data;
+        this.isSuperUser = this.user.is_superuser;
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    }
+  },
+  mounted() {
+    this.getUserDetails();
+  }
+}
 </script>
 
 <style>

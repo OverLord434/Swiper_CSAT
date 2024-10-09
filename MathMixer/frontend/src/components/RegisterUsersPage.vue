@@ -129,20 +129,34 @@ export default {
       emailError: '',
     }
   },
-methods: {
+  methods: {
     submitForm() {
-      this.error = '',
-      this.errors = '',
-      this.register()},
+      this.error = '';
+      this.errors = '';
+      this.register();
+    },
     async register() {
+      this.usernameError = '';
+      this.passwordError = '';
+      this.emailError = '';
+      this.errors = '';
+
+      if (!this.acceptedTerms) {
+        this.error = "Вы должны принять условия лицензионного договора";
+        return; // Завершаем выполнение метода
+      }
+
       try {
-        if (!this.acceptedTerms) {
-          this.error = "Вы должны принять условия лицензионного договора";
-        } else {
-          await axios.post('http://127.0.0.1:8000/auth/register/users', this.form);
-          this.$router.push('/profile');
-        }
+        await axios.post('http://127.0.0.1:8000/auth/register/users', this.form);
+        const loginResponse = await axios.post('http://localhost:8000/auth/enter/user', {
+          username: this.form.username,
+          password: this.form.password,
+        });
+
+        localStorage.setItem('token', loginResponse.data.token.access);
+        this.$router.push('/');
       } catch (error) {
+        this.error = 'Произошла ошибка. Пожалуйста, попробуйте снова.';
         if (error.response && error.response.data) {
           if (error.response.data.username) {
             this.usernameError = error.response.data.username[0];
@@ -153,7 +167,8 @@ methods: {
           if (error.response.data.email) {
             this.emailError = error.response.data.email[0];
           } else {
-            this.errors = error.response.data;}
+            this.errors = error.response.data;
+          }
         }
       }
     }

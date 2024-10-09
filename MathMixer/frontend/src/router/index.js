@@ -35,4 +35,19 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token');
+  if (to.path === '/profile/agency' || to.path === '/profile/users') {
+    if (!token) {
+      next('/enter');
+    } else {
+      next();
+    }
+  } else if (to.path === '/enter' && token) {
+    next('/profile');
+  } else {
+    next();
+  }
+});
+
 export default router
