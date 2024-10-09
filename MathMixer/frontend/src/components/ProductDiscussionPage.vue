@@ -4,7 +4,8 @@
             <div class="max-w-[1200px] mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
-                        <img src="../assets/images/product-photo.jpg" alt="Product Image" class="w-full h-64 object-cover" />
+                        <img src="../assets/images/product-photo.jpg" alt="Product Image"
+                            class="w-full h-64 object-cover" />
                         <div class="p-4">
                             <h2 class="text-lg font-semibold text-gray-800">Шорты Bossa Nova</h2>
                             <p v-if="isDescriptionExpanded" class="text-gray-600 mt-1 font-medium">
@@ -21,7 +22,9 @@
                                 <p class="text-gray-600 text-sm ml-2">Средняя оценка</p>
                             </div>
                             <p class="text-gray-500 mt-2">Производитель: Название компании</p>
-                            <button class="mt-4 w-full px-4 py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 transition duration-300">Добавить в избранное</button>
+                            <button
+                                class="mt-4 w-full px-4 py-2 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 transition duration-300">Добавить
+                                в избранное</button>
                         </div>
                         <div class="p-4 border-t mt-4">
                             <h3 class="text-lg font-semibold mb-2">Характеристики</h3>
@@ -29,14 +32,27 @@
                                 <div class="flex justify-between border-b pb-2">
                                     <span>Материал:</span>
                                     <span>100% хлопок</span>
+                                    <span class="text-yellow-500">{{ ratings.material }} ⭐</span>
                                 </div>
                                 <div class="flex justify-between border-b pb-2">
                                     <span>Цвет:</span>
                                     <span>Синий</span>
+                                    <span class="text-yellow-500">{{ ratings.color }} ⭐</span>
                                 </div>
                                 <div class="flex justify-between border-b pb-2">
                                     <span>Размер:</span>
                                     <span>М</span>
+                                    <span class="text-yellow-500">{{ ratings.size }} ⭐</span>
+                                </div>
+                                <div class="flex justify-between border-b pb-2">
+                                    <span>Стиль:</span>
+                                    <span>Классические</span>
+                                    <span class="text-yellow-500">{{ ratings.style }} ⭐</span>
+                                </div>
+                                <div class="flex justify-between border-b pb-2">
+                                    <span>Вес:</span>
+                                    <span>200г</span>
+                                    <span class="text-yellow-500">{{ ratings.weight }} ⭐</span>
                                 </div>
                             </div>
                         </div>
@@ -44,14 +60,15 @@
 
                     <div class="bg-white shadow-lg rounded-lg p-6 col-span-2">
                         <h3 class="text-2xl font-semibold mb-4">Отзывы</h3>
-                        <div class="max-h-[300px] overflow-y-auto pr-2 mb-4"> 
+                        <div class="max-h-[300px] overflow-y-auto pr-2 mb-4">
                             <div v-if="reviews.length === 0" class="text-gray-500">Отзывов пока нет.</div>
-                            <div v-for="review in reviews" :key="review.id" class="bg-gray-100 p-4 mb-4 rounded-lg shadow-sm flex">
-                                <img src="https://via.placeholder.com/50" alt="User Avatar" class="w-12 h-12 rounded-full mr-4" />
+                            <div v-for="review in reviews" :key="review.id"
+                                class="bg-gray-100 p-4 mb-4 rounded-lg shadow-sm flex">
+                                <img src="https://via.placeholder.com/50" alt="User Avatar"
+                                    class="w-12 h-12 rounded-full mr-4" />
                                 <div class="flex-1">
                                     <div class="flex justify-between">
                                         <span class="font-bold text-gray-700">{{ review.author }}</span>
-                                        <span class="text-yellow-500">{{ review.rating }} ⭐</span>
                                     </div>
                                     <p class="mt-2 text-gray-600">{{ review.text }}</p>
                                     <p class="text-gray-500 text-sm mt-1">{{ review.date }}</p>
@@ -63,16 +80,56 @@
                         <textarea v-model="newReview.text" placeholder="Напишите ваш отзыв"
                             class="w-full p-2 border border-gray-300 rounded-lg mb-2" rows="3"></textarea>
                         <div class="flex flex-col sm:flex-row justify-between items-center">
-                            <select v-model="newReview.rating" class="w-full sm:w-48 p-2 border border-gray-300 rounded-lg mb-2 sm:mb-0">
-                                <option value="" disabled>Выберите оценку</option>
-                                <option value="1">1 ⭐</option>
-                                <option value="2">2 ⭐</option>
-                                <option value="3">3 ⭐</option>
-                                <option value="4">4 ⭐</option>
-                                <option value="5">5 ⭐</option>
-                            </select>
+                            <button @click="submitReview"
+                                class="w-full sm:w-48 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">Отправить
+                                отзыв</button>
+                        </div>
 
-                            <button @click="submitReview" class="w-full sm:w-48 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">Отправить отзыв</button>
+                        <div class="mt-8 p-6 bg-white shadow-md rounded-lg">
+                            <h4 class="text-xl font-semibold mb-4 text-gray-800">Оцените характеристики:</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="materialRating"
+                                        class="block mb-1 font-medium text-gray-700">Материал:</label>
+                                    <select v-model="ratings.material" id="materialRating"
+                                        class="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-yellow-400 focus:outline-none transition duration-150 ease-in-out">
+                                        <option value="" disabled>Выберите оценку</option>
+                                        <option v-for="num in 5" :key="num" :value="num">{{ num }} ⭐</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="colorRating" class="block mb-1 font-medium text-gray-700">Цвет:</label>
+                                    <select v-model="ratings.color" id="colorRating"
+                                        class="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-yellow-400 focus:outline-none transition duration-150 ease-in-out">
+                                        <option value="" disabled>Выберите оценку</option>
+                                        <option v-for="num in 5" :key="num" :value="num">{{ num }} ⭐</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="sizeRating" class="block mb-1 font-medium text-gray-700">Размер:</label>
+                                    <select v-model="ratings.size" id="sizeRating"
+                                        class="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-yellow-400 focus:outline-none transition duration-150 ease-in-out">
+                                        <option value="" disabled>Выберите оценку</option>
+                                        <option v-for="num in 5" :key="num" :value="num">{{ num }} ⭐</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="sizeRating" class="block mb-1 font-medium text-gray-700">Стиль:</label>
+                                    <select v-model="ratings.style" id="sizeRating"
+                                        class="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-yellow-400 focus:outline-none transition duration-150 ease-in-out">
+                                        <option value="" disabled>Выберите оценку</option>
+                                        <option v-for="num in 5" :key="num" :value="num">{{ num }} ⭐</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="sizeRating" class="block mb-1 font-medium text-gray-700">Вес:</label>
+                                    <select v-model="ratings.weight" id="sizeRating"
+                                        class="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-yellow-400 focus:outline-none transition duration-150 ease-in-out">
+                                        <option value="" disabled>Выберите оценку</option>
+                                        <option v-for="num in 5" :key="num" :value="num">{{ num }} ⭐</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,22 +137,28 @@
                 <div class="mt-10">
                     <h3 class="text-2xl font-semibold mb-4">Популярные товары</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
-                            <img src="https://via.placeholder.com/150" alt="Популярный товар" class="w-full h-32 object-cover" />
+                        <div
+                            class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+                            <img src="https://via.placeholder.com/150" alt="Популярный товар"
+                                class="w-full h-32 object-cover" />
                             <div class="p-4">
                                 <h4 class="font-semibold text-gray-800">Популярный товар 1</h4>
                                 <p class="text-gray-600">Краткое описание.</p>
                             </div>
                         </div>
-                        <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
-                            <img src="https://via.placeholder.com/150" alt="Популярный товар" class="w-full h-32 object-cover" />
+                        <div
+                            class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+                            <img src="https://via.placeholder.com/150" alt="Популярный товар"
+                                class="w-full h-32 object-cover" />
                             <div class="p-4">
                                 <h4 class="font-semibold text-gray-800">Популярный товар 2</h4>
                                 <p class="text-gray-600">Краткое описание.</p>
                             </div>
                         </div>
-                        <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
-                            <img src="https://via.placeholder.com/150" alt="Популярный товар" class="w-full h-32 object-cover" />
+                        <div
+                            class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+                            <img src="https://via.placeholder.com/150" alt="Популярный товар"
+                                class="w-full h-32 object-cover" />
                             <div class="p-4">
                                 <h4 class="font-semibold text-gray-800">Популярный товар 3</h4>
                                 <p class="text-gray-600">Краткое описание.</p>
@@ -116,7 +179,13 @@ export default {
             reviews: [],
             newReview: {
                 text: "",
-                rating: "",
+            },
+            ratings: {
+                material: "",
+                color: "",
+                size: "",
+                style: "", 
+                weight: "",
             },
             isDescriptionExpanded: false,
         };
@@ -126,21 +195,18 @@ export default {
             this.isDescriptionExpanded = !this.isDescriptionExpanded;
         },
         submitReview() {
-            if (!this.newReview.text || !this.newReview.rating) return;
+            if (!this.newReview.text) return;
 
             const newReview = {
                 id: this.reviews.length + 1,
                 author: "Пользователь",
                 text: this.newReview.text,
-                rating: this.newReview.rating,
                 date: new Date().toLocaleString(),
             };
 
             this.reviews.push(newReview);
             this.newReview.text = "";
-            this.newReview.rating = "";
         },
     },
 };
 </script>
-
