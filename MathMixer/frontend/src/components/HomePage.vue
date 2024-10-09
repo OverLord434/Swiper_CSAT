@@ -50,7 +50,7 @@
 
       <div class="absolute top-[65px] right-0 h-full flex items-center w-[1000px] overflow-visible slider-container">
         <swiper :slides-per-view="1.5" :space-between="-50" :loop="true"
-          :autoplay="{ delay: 2000, disableOnInteraction: false }">
+          :autoplay="{ delay: 2000}">
           <swiper-slide>
             <img src="../assets/images/slide.png" alt="Slide 1" class="w-full" />
           </swiper-slide>
@@ -115,6 +115,86 @@
             </div>
           </div>
         </div>
+
+        <div class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50" id="model">
+          <div
+            class="bg-white p-8 rounded-xl shadow-2xl min-w-[1200px] min-h-[700px] relative transform transition-all duration-300 scale-95 hover:scale-100 pop-up">
+            <div class="flex justify-center items-center mt-[60px]">
+              <div class="flex flex-col items-start justify-center w-[40%]">
+                <div class="flex flex-col items-center justify-center mb-4 w-full">
+                  <img id="edit-img" src="" alt="Product"
+                    class="w-[300px] h-[250px] mb-4 border-4 border-yellow-500 rounded-xl object-cover">
+                  <label for="product"
+                    class="cursor-pointer bg-yellow-400 text-white px-4 py-2 rounded-lg shadow-md hover:bg-yellow-700 transition duration-300">Добавить
+                    фото</label>
+                  <input id="product" type="file" class="hidden" />
+                </div>
+                <div class="min-w-[200px] mx-auto">
+                  <label class="block mb-2 text-center">Характеристики</label>
+                  <div class="flex flex-row gap-[20px]">
+                    <input type="text"
+                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]" placeholder="Введите название"/>
+                    <input type="text"
+                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[45%]" placeholder="Введите значение"/>
+                  </div>
+
+                  <div class="flex flex-row gap-[20px]">
+                    <input type="text"
+                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]" placeholder="Введите название"/>
+                    <input type="text"
+                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[45%]" placeholder="Введите значение"/>
+                  </div>
+
+                  <div class="flex flex-row gap-[20px]">
+                    <input type="text"
+                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]" placeholder="Введите название"/>
+                    <input type="text"
+                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[45%]" placeholder="Введите значение"/>
+                  </div>
+
+                  <div class="flex flex-row gap-[20px]">
+                    <input type="text"
+                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]" placeholder="Введите название"/>
+                    <input type="text"
+                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[45%]" placeholder="Введите значение"/>
+                  </div>
+
+                  <div class="flex flex-row gap-[20px]">
+                    <input type="text"
+                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]" placeholder="Введите название"/>
+                    <input type="text"
+                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[45%]" placeholder="Введите значение"/>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ml-8 w-[40%]">
+                <h2 class="text-3xl font-bold mb-4">Добавление товара</h2>
+                <form class="space-y-4" id="productForm">
+                  <label class="block mb-2">Название:</label>
+                  <input type="text"
+                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400" placeholder="Введите название"/>
+
+                  <label class="block mb-2">Описание:</label>
+                  <textarea
+                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400"
+                    rows="4" placeholder="Введите описание"></textarea>
+
+                  <label class="block mb-2">Цена:</label>
+                  <input type="number"
+                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400" placeholder="Введите цену"/>
+
+                  <div class="flex justify-center items-center gap-2">
+                    <button id="undoBtn" type="button"
+                      class="bg-gradient-to-r from-gray-300 to-gray-500 text-white px-4 py-2 rounded-full w-full shadow-md hover:shadow-xl transition-all">Отмена</button>
+                    <button type="submit"
+                      class="bg-gradient-to-r from-yellow-500 to-yellow-700 text-white px-4 py-2 rounded-full w-full shadow-md hover:shadow-xl transition-all">Добавить</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -128,11 +208,41 @@ export default {
   components: {
     Swiper,
     SwiperSlide
+  },
+  mounted() {
+    document.getElementById('addLink').addEventListener('click', () => {
+      document.getElementById('model').classList.remove('hidden');
+    });
+    document.getElementById('undoBtn').addEventListener('click', () => {
+      document.getElementById('model').classList.add('hidden');
+    });
+
+    document.getElementById('product').addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          document.getElementById('edit-img').src = reader.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    });
   }
 }
 </script>
 
 <style>
+.pop-up::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background-color: #fcde00;
+  z-index: -1;
+}
+
 @media (max-width: 1335px) {
   .slider-title {
     font-size: 48px;
@@ -267,7 +377,7 @@ export default {
   .text-content p {
     text-align: center;
     padding-top: 10px;
-    
+
   }
 
   .custom-flex {

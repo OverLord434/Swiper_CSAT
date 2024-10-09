@@ -12,7 +12,7 @@
           <ul class="flex justify-between items-center menu-list w-full md:w-[525px]">
             <li><a href="#">Категории</a></li>
             <li><a href="#">Лидеры</a></li>
-            <li><a href="#">Добавить</a></li>
+            <li><a href="#" id="addLink">Добавить</a></li>
           </ul>
         </nav>
 
