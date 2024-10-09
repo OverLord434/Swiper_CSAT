@@ -116,7 +116,7 @@
           </div>
         </div>
 
-        <div class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50" id="model">
+        <div class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70" id="model">
           <div
             class="bg-white p-8 rounded-xl shadow-2xl min-w-[1200px] min-h-[700px] relative transform transition-all duration-300 scale-95 hover:scale-100 pop-up">
             <div class="flex justify-center items-center mt-[60px]">
@@ -210,11 +210,9 @@ export default {
     SwiperSlide
   },
   mounted() {
-    document.getElementById('addLink').addEventListener('click', () => {
-      document.getElementById('model').classList.remove('hidden');
-    });
     document.getElementById('undoBtn').addEventListener('click', () => {
       document.getElementById('model').classList.add('hidden');
+      window.location.reload();
     });
 
     document.getElementById('product').addEventListener('change', function () {
@@ -227,7 +225,7 @@ export default {
         reader.readAsDataURL(file);
       }
     });
-  }
+  },
 }
 </script>
 
