@@ -17,6 +17,9 @@
                             <button @click="toggleDescription" class="text-blue-500 text-sm mt-2">
                                 {{ isDescriptionExpanded ? 'Скрыть описание' : 'Показать описание' }}
                             </button>
+
+                            <p class="text-gray-500 mt-2">Цена: 500₽</p>
+                            
                             <div class="flex items-center mt-2">
                                 <span class="text-yellow-500 font-semibold">4.5 ⭐</span>
                                 <p class="text-gray-600 text-sm ml-2">Средняя оценка</p>
@@ -134,6 +137,13 @@
                     </div>
                 </div>
 
+
+                <div class="bg-white shadow-lg rounded-lg p-6 mt-8">
+                    <h3 class="text-2xl font-semibold mb-4">Статистика оценок</h3>
+                    <canvas id="userRatingChart" class="mb-4"></canvas>
+                    <canvas id="averageRatingChart"></canvas>
+                </div>
+
                 <div class="mt-10">
                     <h3 class="text-2xl font-semibold mb-4">Популярные товары</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -172,6 +182,10 @@
 </template>
 
 <script>
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables);
+
 export default {
     name: "ProductDiscussionPage",
     data() {
@@ -184,12 +198,17 @@ export default {
                 material: "",
                 color: "",
                 size: "",
-                style: "", 
+                style: "",
                 weight: "",
             },
             isDescriptionExpanded: false,
         };
     },
+
+    mounted() {
+        this.renderCharts();
+    },
+
     methods: {
         toggleDescription() {
             this.isDescriptionExpanded = !this.isDescriptionExpanded;
@@ -206,6 +225,89 @@ export default {
 
             this.reviews.push(newReview);
             this.newReview.text = "";
+        },
+
+        renderCharts() {
+            const userRatingCtx = document.getElementById('userRatingChart').getContext('2d');
+            const averageRatingCtx = document.getElementById('averageRatingChart').getContext('2d');
+
+            const materialData = [4.5, 4.0, 4.2, 4.8, 4.6];
+            const colorData = [3.0, 3.5, 4.0, 3.8, 4.2];
+            const sizeData = [4.0, 4.5, 4.2, 4.3, 4.1];
+            const styleData = [5.0, 4.8, 4.7, 5.0, 4.9];
+            const weightData = [4.2, 4.0, 4.1, 4.3, 4.4];
+
+            const averageRatingData = [4.2, 4.5, 4.0, 4.8, 4.6]; // Замените на реальные данные
+
+            // График изменений оценок пользователей за последний день
+            new Chart(userRatingCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Час 1', 'Час 2', 'Час 3', 'Час 4', 'Час 5'],
+                    datasets: [
+                        {
+                            label: 'Материал',
+                            data: materialData,
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            fill: true,
+                        },
+                        {
+                            label: 'Цвет',
+                            data: colorData,
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            fill: true,
+                        },
+                        {
+                            label: 'Размер',
+                            data: sizeData,
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            fill: true,
+                        },
+                        {
+                            label: 'Стиль',
+                            data: styleData,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            fill: true,
+                        },
+                        {
+                            label: 'Вес',
+                            data: weightData,
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                            fill: true,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            //График изменения средней оценки товара
+            new Chart(averageRatingCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Час 1', 'Час 2', 'Час 3', 'Час 4', 'Час 5'],
+                    datasets: [
+                        {
+                            label: 'Средняя оценка всех характеристик',
+                            data: averageRatingData,
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            fill: true,
+                        },
+                    ]
+                }
+            });
         },
     },
 };

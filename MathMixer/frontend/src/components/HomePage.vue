@@ -49,8 +49,7 @@
       </div>
 
       <div class="absolute top-[65px] right-0 h-full flex items-center w-[1000px] overflow-visible slider-container">
-        <swiper :slides-per-view="1.5" :space-between="-50" :loop="true"
-          :autoplay="{ delay: 2000}">
+        <swiper :slides-per-view="1.5" :space-between="-50" :loop="true">
           <swiper-slide>
             <img src="../assets/images/slide.png" alt="Slide 1" class="w-full" />
           </swiper-slide>
@@ -129,42 +128,26 @@
                     фото</label>
                   <input id="product" type="file" class="hidden" />
                 </div>
-                <div class="min-w-[200px] mx-auto">
+                <div class="max-w-[300px] mx-auto">
                   <label class="block mb-2 text-center">Характеристики</label>
-                  <div class="flex flex-row gap-[20px]">
-                    <input type="text"
-                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]" placeholder="Введите название"/>
-                    <input type="text"
-                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[45%]" placeholder="Введите значение"/>
-                  </div>
+                  <input type="text"
+                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[45%]"
+                    placeholder="Введите название" />
+                  <input type="text"
+                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]"
+                    placeholder="Введите название" />
 
-                  <div class="flex flex-row gap-[20px]">
-                    <input type="text"
-                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]" placeholder="Введите название"/>
-                    <input type="text"
-                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[45%]" placeholder="Введите значение"/>
-                  </div>
+                  <input type="text"
+                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]"
+                    placeholder="Введите название" />
 
-                  <div class="flex flex-row gap-[20px]">
-                    <input type="text"
-                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]" placeholder="Введите название"/>
-                    <input type="text"
-                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[45%]" placeholder="Введите значение"/>
-                  </div>
+                  <input type="text"
+                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]"
+                    placeholder="Введите название" />
 
-                  <div class="flex flex-row gap-[20px]">
-                    <input type="text"
-                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]" placeholder="Введите название"/>
-                    <input type="text"
-                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[45%]" placeholder="Введите значение"/>
-                  </div>
-
-                  <div class="flex flex-row gap-[20px]">
-                    <input type="text"
-                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]" placeholder="Введите название"/>
-                    <input type="text"
-                      class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[45%]" placeholder="Введите значение"/>
-                  </div>
+                  <input type="text"
+                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]"
+                    placeholder="Введите название" />
                 </div>
               </div>
 
@@ -173,7 +156,8 @@
                 <form class="space-y-4" id="productForm">
                   <label class="block mb-2">Название:</label>
                   <input type="text"
-                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400" placeholder="Введите название"/>
+                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400"
+                    placeholder="Введите название" />
 
                   <label class="block mb-2">Описание:</label>
                   <textarea
@@ -182,13 +166,14 @@
 
                   <label class="block mb-2">Цена:</label>
                   <input type="number"
-                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400" placeholder="Введите цену"/>
+                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400"
+                    placeholder="Введите цену" />
 
                   <div class="flex justify-center items-center gap-2">
                     <button id="undoBtn" type="button"
                       class="bg-gradient-to-r from-gray-300 to-gray-500 text-white px-4 py-2 rounded-full w-full shadow-md hover:shadow-xl transition-all">Отмена</button>
                     <button type="submit"
-                      class="bg-gradient-to-r from-yellow-500 to-yellow-700 text-white px-4 py-2 rounded-full w-full shadow-md hover:shadow-xl transition-all">Добавить</button>
+                      class="bg-gradient-to-r from-[#fcde00] to-[#ff7f00] text-white px-4 py-2 rounded-full w-full shadow-md hover:shadow-xl transition-all">Добавить</button>
                   </div>
                 </form>
               </div>
@@ -237,7 +222,7 @@ export default {
   left: 0;
   right: 0;
   height: 40%;
-  background-color: #fcde00;
+  background-image: linear-gradient(to top, #fcde00, #ff7f00);
   z-index: -1;
 }
 
