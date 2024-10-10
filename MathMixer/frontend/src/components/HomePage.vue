@@ -159,6 +159,16 @@
                     class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400"
                     placeholder="Введите название" />
 
+                  <select
+                    class="font-normal text-[16px] border border-gray-300 rounded-lg p-2 ring-2 ring-yellow-400 outline-none transition duration-150 ease-in-out">
+                    <option disabled selected>Выберите категорию</option>
+                    <option>Техника</option>
+                    <option>Техника</option>
+                    <option>Техника</option>
+                    <option>Техника</option>
+                    <option>Техника</option>
+                  </select>
+
                   <label class="block mb-2">Описание:</label>
                   <textarea
                     class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400"
