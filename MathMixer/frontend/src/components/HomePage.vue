@@ -27,13 +27,13 @@
 
 
     <section class="relative min-h-[713px] overflow-hidden pb-[30px]">
-      <img class="absolute right-0 top-0 h-full z-2" src="../assets/images/triangle-yellow.png" alt="" />
+      <img class="absolute right-0 top-0 h-full z-0" src="../assets/images/triangle-yellow.png" alt="" />
       <img class="absolute bottom-0 left-0" src="../assets/images/min_triangle-black.png" alt="" />
 
-      <div class="max-w-[1360px] mx-auto px-[10px] relative z-10">
-        <p class="text-[64px] leading-[52px] pt-[70px] mb-[72px] slider-title">Как мы работаем</p>
+      <div class="relative md:static max-w-[1360px] mx-auto px-[10px] z-10">
+        <p class="text-[64px] leading-[52px] pt-[70px] mb-[72px] slider-title z-3">Как мы работаем</p>
 
-        <div class="flex justify-between relative z-12">
+        <div class="flex justify-between">
           <div>
             <p class="max-w-[413px] mb-[226px] text-justify slider-paragraph">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum totam consequuntur
@@ -49,15 +49,15 @@
       </div>
 
       <div class="absolute top-[65px] right-0 h-full flex items-center w-[1000px] overflow-visible slider-container">
-        <swiper :slides-per-view="1.5" :space-between="-50" :loop="true">
+        <swiper :slides-per-view="1.5" :space-between="-55" :loop="true" class="swiper">
           <swiper-slide>
-            <img src="../assets/images/slide.png" alt="Slide 1" class="w-full" />
+            <img src="../assets/images/slide-1.png" alt="Slide 1" class="w-full" />
           </swiper-slide>
           <swiper-slide>
-            <img src="../assets/images/slide.png" alt="Slide 2" class="w-full" />
+            <img src="../assets/images/slide-2.png" alt="Slide 2" class="w-full" />
           </swiper-slide>
           <swiper-slide>
-            <img src="../assets/images/slide.png" alt="Slide 3" class="w-full" />
+            <img src="../assets/images/slide-3.png" alt="Slide 3" class="w-full" />
           </swiper-slide>
         </swiper>
       </div>
@@ -177,8 +177,6 @@
             </div>
           </div>
         </div>
-
-
       </div>
     </section>
   </div>
@@ -240,6 +238,7 @@ export default {
   .slider-container {
     width: 800px;
   }
+  
 }
 
 @media (max-width: 1200px) {
