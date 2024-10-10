@@ -8,43 +8,39 @@
           </a>
         </div>
 
-        <nav class="w-full md:w-auto order-2">
-          <ul class="flex justify-between items-center menu-list w-full md:w-[525px]">
-            <li><a href="#">Категории</a></li>
-            <li><a href="#">Лидеры</a></li>
-            <li>
-              <a href="#" @click.prevent="toggleDropdown">Добавить</a>
-              <div v-if="isDropdownVisible" class="absolute bg-white border-[1px] shadow-md z-0 px-4 py-2 w-36 rounded-md" id="dropdown">
-                <li><a href="#" class="text-[20px]" @click.prevent="addLinkClickHandler">Товары</a></li>
-                <li><a href="#" class="text-[20px]" @click.prevent="addLinkClickHandler">Услуги</a></li>
-              </div>
-            </li>
-          </ul>
-        </nav>
+      <nav class="w-full md:w-auto order-2">
+        <ul class="flex justify-end items-center menu-list w-full md:w-[525px] gap-[50px] menu-list">
+          <li><a href="#">Категории</a></li>
+          <li><a href="#">Лидеры</a></li>
+          <li>
+            <a href="#" @click.prevent="toggleDropdown">Добавить</a>
+            <div v-if="isDropdownVisible"
+              class="absolute bg-white border-[1px] shadow-md z-0 px-4 py-2 w-36 rounded-md" id="dropdown">
+              <li><a href="#" class="text-[20px]" @click.prevent="addLinkClickHandler('Добавить товар')">Товары</a></li>
+              <li><a href="#" class="text-[20px]" @click.prevent="addLinkClickHandler('Добавить услугу')">Услуги</a></li>
+            </div>
+          </li>
+        </ul>
+      </nav>   
 
-        <div v-if="!isSearchHidden" 
-          class="flex justify-between items-center w-full md:w-[532px] bg-[#D9D9D9] rounded-[5px] px-[7px] mt-2 md:mt-0 order-3"
-        >
-          <input
-            type="text"
-            class="font-normal placeholder-black placeholder-opacity-50 w-full bg-transparent outline-none pr-[10px]"
-            placeholder="Поиск по вопросам"
-          />
-          <div class="search-icon opacity-60">
-            <img
-              src="../assets/images/search-icon.svg"
-              alt="Иконка поиска"
-              class="w-6 h-6"
-            />
-          </div>
-        </div>
-
-        <div class="flex-shrink-0 order-4 profile">
-          <router-link to="/enter">
-            <img src="../assets/images/profile-icon.svg" alt="Иконка профиля" />
+      <div v-if="!isSearchHidden"
+        class="flex justify-between items-center w-full md:w-[532px] bg-[#D9D9D9] rounded-[5px] px-[7px] mt-2 md:mt-0 order-3">
+        <input type="text"
+          class="font-normal placeholder-black placeholder-opacity-50 w-full bg-transparent outline-none pr-[10px]"
+          placeholder="Поиск по вопросам" />
+        <div class="search-icon opacity-60">
+          <router-link to="/product/cards">
+            <img src="../assets/images/search-icon.svg" alt="Иконка поиска" class="w-6 h-6" />
           </router-link>
         </div>
       </div>
+
+      <div class="flex-shrink-0 order-4 profile">
+        <router-link to="/enter">
+          <img src="../assets/images/profile-icon.svg" alt="Иконка профиля" />
+        </router-link>
+      </div>
+    </div>
     </div>
   </header>
 </template>
@@ -52,8 +48,8 @@
 <script>
 export default {
   name: "AppHeader",
-  data(){
-    return{
+  data() {
+    return {
       isDropdownVisible: false,
     };
   },
@@ -64,15 +60,15 @@ export default {
     }
   },
 
-  methods:{
-    toggleDropdown(){
+  methods: {
+    toggleDropdown() {
       this.isDropdownVisible = !this.isDropdownVisible;
     },
-    addLinkClickHandler(){
+    addLinkClickHandler(action) {
+      document.getElementById('addProductTitle').innerText = action;
       document.getElementById('model').classList.remove('hidden');
-  },
+    },
   }
-
 };
 </script>
 
@@ -80,8 +76,9 @@ export default {
 header {
   font-size: 25px;
 }
+
 .menu-list {
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
 .menu-list a {
@@ -97,16 +94,18 @@ header {
   header {
     font-size: 23px;
   }
+
   .search-icon {
     padding-left: 5px;
   }
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
   header {
     padding-bottom: 10px;
     font-size: 19px;
   }
+
   .profile {
     order: 1;
   }
@@ -116,16 +115,27 @@ header {
   }
 }
 
+@media (max-width: 410px) {
+  .menu-list {
+    gap: 10px;
+  }
+}
+
 @media (max-width: 360px) {
   header {
-    font-size: 15px; 
+    font-size: 15px;
   }
-  
+
   .logo {
     width: 90px;
   }
+
   .profile {
     width: 25px;
+  }
+
+  .menu-list {
+    gap: 10px;
   }
 }
 </style>

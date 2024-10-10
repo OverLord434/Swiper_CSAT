@@ -6,6 +6,7 @@ import RegisterAgencyPage from '@/components/RegisterAgencyPage.vue'
 import ProfileAgencyPage from '@/components/ProfileAgencyPage.vue'
 import ProfileUsersPage from '@/components/ProfileUsersPage.vue'
 import ProductDiscussionPage from '@/components/ProductDiscussionPage.vue'
+import ProductCardsPage from '@/components/ProductCardsPage.vue'
 
 const routes = [
   {
@@ -48,6 +49,12 @@ const routes = [
     path: '/product',
     name: 'ProductDiscussion',
     component: ProductDiscussionPage
+  },
+
+  {
+    path: '/product/cards',
+    name: 'ProductCards',
+    component: ProductCardsPage
   }
 ]
 

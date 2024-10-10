@@ -117,9 +117,9 @@
 
         <div class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70" id="model">
           <div
-            class="bg-white p-8 rounded-xl shadow-2xl min-w-[1200px] min-h-[700px] relative transform transition-all duration-300 scale-95 hover:scale-100 pop-up">
-            <div class="flex justify-center items-center mt-[60px]">
-              <div class="flex flex-col items-start justify-center w-[40%]">
+            class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl max-w-md sm:max-w-[1200px] w-full min-h-[700px] relative transform transition-all duration-300 scale-95 hover:scale-100 pop-up">
+            <div class="flex flex-col sm:flex-row justify-center items-start mt-4">
+              <div class="flex flex-col items-center justify-center w-full sm:w-[40%] mb-6 sm:mb-0">
                 <div class="flex flex-col items-center justify-center mb-4 w-full">
                   <img id="edit-img" src="" alt="Product"
                     class="w-[300px] h-[250px] mb-4 border-4 border-yellow-500 rounded-xl object-cover">
@@ -130,29 +130,16 @@
                 </div>
                 <div class="max-w-[300px] mx-auto">
                   <label class="block mb-2 text-center">Характеристики</label>
-                  <input type="text"
-                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[45%]"
-                    placeholder="Введите название" />
-                  <input type="text"
-                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]"
-                    placeholder="Введите название" />
-
-                  <input type="text"
-                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]"
-                    placeholder="Введите название" />
-
-                  <input type="text"
-                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]"
-                    placeholder="Введите название" />
-
-                  <input type="text"
-                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400 w-[55%]"
-                    placeholder="Введите название" />
+                  <h2 class="text-[16px] font-normal mb-4">Характеристика 1</h2>
+                  <h2 class="text-[16px] font-normal mb-4">Характеристика 2</h2>
+                  <h2 class="text-[16px] font-normal mb-4">Характеристика 3</h2>
+                  <h2 class="text-[16px] font-normal mb-4">Характеристика 4</h2>
+                  <h2 class="text-[16px] font-normal mb-4">Характеристика 5</h2>
                 </div>
               </div>
 
-              <div class="ml-8 w-[40%]">
-                <h2 class="text-3xl font-bold mb-4">Добавление товара</h2>
+              <div class="w-full sm:w-[40%]">
+                <h2 id="addProductTitle" class="text-3xl font-bold mb-4 text-center"></h2>
                 <form class="space-y-4" id="productForm">
                   <label class="block mb-2">Название:</label>
                   <input type="text"
@@ -160,7 +147,7 @@
                     placeholder="Введите название" />
 
                   <select
-                    class="font-normal text-[16px] border border-gray-300 rounded-lg p-2 ring-2 ring-yellow-400 outline-none transition duration-150 ease-in-out">
+                    class="font-normal text-[16px] border border-gray-300 rounded-lg p-2 ring-2 ring-yellow-400 outline-none transition duration-150 ease-in-out w-full">
                     <option disabled selected>Выберите категорию</option>
                     <option>Техника</option>
                     <option>Техника</option>
@@ -190,6 +177,8 @@
             </div>
           </div>
         </div>
+
+
       </div>
     </section>
   </div>
@@ -202,8 +191,9 @@ export default {
   name: 'HomePage',
   components: {
     Swiper,
-    SwiperSlide
+    SwiperSlide,
   },
+
   mounted() {
     document.getElementById('undoBtn').addEventListener('click', () => {
       document.getElementById('model').classList.add('hidden');
