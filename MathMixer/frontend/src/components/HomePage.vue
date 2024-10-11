@@ -140,9 +140,9 @@
 
               <div class="w-full sm:w-[40%]">
                 <h2 id="addProductTitle" class="text-3xl font-bold mb-4 text-center"></h2>
-                <form class="space-y-4" id="productForm">
+                <form class="space-y-4" id="productForm" @submit.prevent="submitForm">
                   <label class="block mb-2">Название:</label>
-                  <input type="text"
+                  <input type="text" v-model="productName"
                     class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400"
                     placeholder="Введите название" />
 
@@ -153,14 +153,9 @@
                   </select>
 
                   <label class="block mb-2">Описание:</label>
-                  <textarea
+                  <textarea v-model="productDescription"
                     class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400"
                     rows="4" placeholder="Введите описание"></textarea>
-
-                  <label class="block mb-2">Цена:</label>
-                  <input type="number"
-                    class="text-[16px] bg-gray-100 font-normal mb-4 border rounded-lg p-2 w-full outline-none ring-2 ring-yellow-400"
-                    placeholder="Введите цену" />
 
                   <div class="flex justify-center items-center gap-2">
                     <button id="undoBtn" type="button"
