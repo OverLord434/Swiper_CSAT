@@ -33,9 +33,10 @@ const routes = [
   },
 
   {
-    path: '/product/',
+    path: '/product/discussion/:id_product',
     name: 'ProductDiscussionPage',
     component: ProductDiscussionPage,
+    props: true,
   },
 
   {

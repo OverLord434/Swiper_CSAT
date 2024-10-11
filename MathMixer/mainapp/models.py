@@ -23,8 +23,8 @@ class Product(models.Model):
 
 class Category(models.Model):
     id_category = models.AutoField(primary_key=True)
-    charackterstick = models.OneToOneField('Charackterstick', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
+    charackterstick = models.OneToOneField('Charackterstick', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

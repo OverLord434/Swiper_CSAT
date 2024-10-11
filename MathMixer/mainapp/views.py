@@ -5,7 +5,8 @@ from .serializers import CategorySerializer, CharackterstickSerializer, ProductS
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Product
-
+from rest_framework.generics import RetrieveAPIView
+from .serializers import ProductDetailSerializer
 
 @api_view(['GET'])
 def get_categories(request):
@@ -35,3 +36,8 @@ class ProductSearchView(APIView):
         products = Product.objects.filter(name__icontains=query)
         serializer = ProductаSerializer(products, many=True)
         return Response(serializer.data)
+class ProductDetailView(RetrieveAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductDetailSerializer
+    lookup_field = 'id_product'
+    permission_classes = []

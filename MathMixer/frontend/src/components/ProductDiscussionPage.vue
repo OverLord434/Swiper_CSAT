@@ -7,21 +7,10 @@
                         <img src="../assets/images/product-photo.jpg" alt="Product Image"
                             class="w-full h-64 object-cover" />
                         <div class="p-4">
-                            <h2 class="text-lg font-semibold text-gray-800">Шорты Bossa Nova</h2>
-                            <p v-if="isDescriptionExpanded" class="text-gray-600 mt-1 font-medium">
-                                Форма спроектирована с достаточной свободой на облегание. Карманы с подкройным бочком
-                                прямого среза.
-                                Пояс фиксируется широкой резинкой и декоративным светлым шнуром. Добавьте к ним футболку
-                                из новой коллекции и у вашего ребенка будет полноценный комплект на весну.
-                            </p>
-                            <button @click="toggleDescription" class="text-blue-500 text-sm mt-2">
-                                {{ isDescriptionExpanded ? 'Скрыть описание' : 'Показать описание' }}
-                            </button>
-
-                            <p class="text-gray-500 mt-2">Цена: 500₽</p>
-                            
+                            <h2 class="text-lg font-semibold text-gray-800">{{ product.name }}</h2>
+                            <p v-if="isDescriptionExpanded" class="text-gray-600 mt-1 font-medium">{{ product.textdes }}</p> 
                             <div class="flex items-center mt-2">
-                                <span class="text-yellow-500 font-semibold">4.5 ⭐</span>
+                                <span class="text-yellow-500 font-semibold">{{ product.average_rating.toFixed(1) }} ⭐</span>
                                 <p class="text-gray-600 text-sm ml-2">Средняя оценка</p>
                             </div>
                             <p class="text-gray-500 mt-2">Производитель: Название компании</p>
@@ -33,28 +22,23 @@
                             <h3 class="text-lg font-semibold mb-2">Характеристики</h3>
                             <div class="grid grid-cols-1 gap-2">
                                 <div class="flex justify-between border-b pb-2">
-                                    <span>Материал:</span>
-                                    <span>100% хлопок</span>
+                                    <span>{{ product.category.charackterstick.charackterstick1 }}</span>
                                     <span class="text-yellow-500">{{ ratings.material }} ⭐</span>
                                 </div>
                                 <div class="flex justify-between border-b pb-2">
-                                    <span>Цвет:</span>
-                                    <span>Синий</span>
+                                    <span>{{ product.category.charackterstick.charackterstick2 }}</span>
                                     <span class="text-yellow-500">{{ ratings.color }} ⭐</span>
                                 </div>
                                 <div class="flex justify-between border-b pb-2">
-                                    <span>Размер:</span>
-                                    <span>М</span>
+                                    <span>{{ product.category.charackterstick.charackterstick3 }}</span>
                                     <span class="text-yellow-500">{{ ratings.size }} ⭐</span>
                                 </div>
                                 <div class="flex justify-between border-b pb-2">
-                                    <span>Стиль:</span>
-                                    <span>Классические</span>
+                                    <span>{{ product.category.charackterstick.charackterstick4 }}</span>
                                     <span class="text-yellow-500">{{ ratings.style }} ⭐</span>
                                 </div>
                                 <div class="flex justify-between border-b pb-2">
-                                    <span>Вес:</span>
-                                    <span>200г</span>
+                                    <span>{{ product.category.charackterstick.charackterstick5 }}</span>
                                     <span class="text-yellow-500">{{ ratings.weight }} ⭐</span>
                                 </div>
                             </div>
@@ -183,11 +167,13 @@
 
 <script>
 import { Chart, registerables } from 'chart.js';
+import axios from 'axios';
 
 Chart.register(...registerables);
 
 export default {
     name: "ProductDiscussionPage",
+    props: ['id_product'],
     data() {
         return {
             reviews: [],
@@ -202,14 +188,26 @@ export default {
                 weight: "",
             },
             isDescriptionExpanded: false,
+            product: null,
         };
     },
 
     mounted() {
-        this.renderCharts();
+        this.fetchProductDetails();
     },
 
     methods: {
+        fetchProductDetails() {
+            axios
+                .get(`http://127.0.0.1:8000/main/api/products/${this.id_product}/`)
+                .then((response) => {
+                    this.product = response.data;
+                    this.renderCharts();
+                })
+                .catch((error) => {
+                    console.error('Ошибка при получении деталей продукта:', error);
+                });
+        },
         toggleDescription() {
             this.isDescriptionExpanded = !this.isDescriptionExpanded;
         },

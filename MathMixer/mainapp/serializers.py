@@ -29,3 +29,40 @@ class ProductаSerializer(serializers.ModelSerializer):
         total_rating = obj.rating1 + obj.rating2 + obj.rating3 + obj.rating4 + obj.rating5
         average = total_rating / 5
         return average
+
+class CharackterstickDiscSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Charackterstick
+        fields = [
+            'charackterstick1',
+            'charackterstick2',
+            'charackterstick3',
+            'charackterstick4',
+            'charackterstick5',
+        ]
+
+class CategoryDiscSerializer(serializers.ModelSerializer):
+    charackterstick = CharackterstickDiscSerializer()
+
+    class Meta:
+        model = Category
+        fields = ['name', 'charackterstick']
+
+class ProductDetailSerializer(serializers.ModelSerializer):
+    average_rating = serializers.SerializerMethodField()
+    category = CategoryDiscSerializer()
+
+    class Meta:
+        model = Product
+        fields = [
+            'id_product',
+            'name',
+            'textdes',
+            'average_rating',
+            'category',
+        ]
+
+    def get_average_rating(self, obj):
+        total_rating = obj.rating1 + obj.rating2 + obj.rating3 + obj.rating4 + obj.rating5
+        average = total_rating / 5
+        return average

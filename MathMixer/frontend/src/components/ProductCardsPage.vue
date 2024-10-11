@@ -8,7 +8,7 @@
                     <span class="text-xl text-yellow-500 font-semibold"> {{ product.average_rating.toFixed(1) }} ⭐️</span>
                     <p class="text-gray-600 text-sm ml-2">Средняя оценка</p>
                 </div>
-                <router-link to="/product" class="inline-block bg-yellow-400 text-white rounded-lg py-2 px-4 hover:bg-yellow-500 transition">Перейти</router-link>
+                <router-link :to="{ name: 'ProductDiscussionPage', params: { id_product: product.id_product } }" class="inline-block bg-yellow-400 text-white rounded-lg py-2 px-4 hover:bg-yellow-500 transition">Перейти</router-link>
             </div>
         </div>
     </div>
