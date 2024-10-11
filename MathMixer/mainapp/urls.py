@@ -1,10 +1,10 @@
-from django.urls import include, path
-from rest_framework.routers import DefaultRouter
-from .views import UserViewSet
-
-router = DefaultRouter()
-router.register(r'users', UserViewSet)
+from django.urls import path
+from . import views
+from .views import ProductSearchView
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/categories/', views.get_categories, name='get_categories'),
+    path('api/characteristics/<int:category_id>/', views.get_characteristics, name='get_characteristics'),
+    path('api/products/', views.add_product, name='add_product'),
+    path('api/products/search/', ProductSearchView.as_view(), name='product-search'),
 ]

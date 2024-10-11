@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,6 +23,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'mainapp',
     'corsheaders',
+    'rest_framework_simplejwt',
     'usersapp'
 ]
 
@@ -67,7 +69,7 @@ WSGI_APPLICATION = "MathMixer.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Math_db',
+        'NAME': 'csatswap_db',
         'USER': 'postgres',
         'PASSWORD': 'kalina2005',
         'HOST': 'localhost',
@@ -92,7 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru-RU"
 
 TIME_ZONE = "UTC"
 
@@ -105,3 +107,15 @@ STATIC_URL = "static/"
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+USE_I18N = True
+USE_L10N = True
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
