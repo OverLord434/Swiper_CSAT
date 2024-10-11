@@ -7,11 +7,9 @@
           <div class="flex flex-col md:w-1/2 items-center md:items-start">
             <h1 class="text-[64px] mb-[56px] leading-[52px] text-center md:text-left section-title">Кто мы</h1>
             <p class="max-w-[453px] min-h-[143px] mb-[46px] text-center md:text-left section-paragraph">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam iusto sed fugiat sunt
-              maxime neque quisquam libero ea nobis, corporis id tempora. Non placeat cumque odio
-              facilis labore velit porro? Lorem, ipsum. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Esse neque corrupti omnis cumque non ea adipisci perspiciatis
-              exercitationem nesciunt libero.
+              Мы — команда разработчиков, объединившихся для создания приложения Swipe CSAT, направленного на оценку
+              удовлетворенности клиентов. Наша цель — помочь бизнесам лучше понять мнения своих пользователей и
+              принимать обоснованные решения для улучшения качества товаров и услуг.
             </p>
             <a href="#"
               class="border-4 border-[#FCDE00] bg-transparent rounded-[20px] w-[252px] text-center uppercase transition duration-700 ease-in-out text-[#FCDE00] py-[26px] hover:bg-[#FCDE00] hover:text-white section-button mb-6">
@@ -30,19 +28,20 @@
       <img class="absolute right-0 top-0 h-full z-0" src="../assets/images/triangle-yellow.png" alt="" />
       <img class="absolute bottom-0 left-0" src="../assets/images/min_triangle-black.png" alt="" />
 
-      <div class="relative md:static max-w-[1360px] mx-auto px-[10px] z-10">
-        <p class="text-[64px] leading-[52px] pt-[70px] mb-[72px] slider-title z-3">Как мы работаем</p>
+      <div class="relative lg:static max-w-[1360px] mx-auto px-[10px] z-10">
+        <p class="text-[64px] leading-[52px] pt-[70px] mb-[72px] slider-title z-3">Оценка товаров</p>
 
         <div class="flex justify-between">
           <div>
-            <p class="max-w-[413px] mb-[226px] text-justify slider-paragraph">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum totam consequuntur
-              harum praesentium maxime quidem saepe quae ut cum beatae architecto, nostrum commodi
-              laudantium? Atque laboriosam accusantium architecto aut enim!
+            <p class="max-w-[413px] mb-[156px] text-justify slider-paragraph">
+              Оценка товаров и услуг является центральной частью приложения Swipe CSAT, предоставляя пользователям
+              возможность легко и быстро делиться своими впечатлениями. Мы понимаем, насколько важно для бизнеса знать
+              мнение клиентов, поэтому создали интуитивно понятный интерфейс, который делает процесс оценки максимально
+              простым и эффективным.
             </p>
             <div
               class="border-4 border-black md:border-[#FCDE00] bg-transparent rounded-[20px] w-[252px] text-center uppercase transition duration-700 ease-in-out text-black md:text-[#FCDE00] py-[26px] hover:bg-[#FCDE00] hover:text-white slider-btn">
-              <a href="#">Перейти к решению</a>
+              <a href="#">Перейти к оценке</a>
             </div>
           </div>
         </div>
@@ -124,7 +123,7 @@
                   <img id="edit-img" src="" alt="Product"
                     class="w-[300px] h-[250px] mb-4 border-4 border-yellow-500 rounded-xl object-cover">
                   <label for="product"
-                    class="cursor-pointer bg-yellow-400 text-white px-4 py-2 rounded-lg shadow-md hover:bg-yellow-700 transition duration-300">Добавить
+                    class="cursor-pointer bg-yellow-400 text-white px-4 py-2 rounded-lg shadow-md hover:bg-yellow-500 transition duration-300">Добавить
                     фото</label>
                   <input id="product" type="file" class="hidden" />
                 </div>
@@ -168,9 +167,9 @@
 
                   <div class="flex justify-center items-center gap-2">
                     <button id="undoBtn" type="button"
-                      class="bg-gradient-to-r from-gray-300 to-gray-500 text-white px-4 py-2 rounded-full w-full shadow-md hover:shadow-xl transition-all">Отмена</button>
+                      class="border-2 border-red-500 bg-transparent rounded-[10px] w-[200px] md:w-[195px] py-[6px] text-red-500 hover:bg-red-500 hover:text-white transition duration-500">Отмена</button>
                     <button type="submit"
-                      class="bg-gradient-to-r from-[#fcde00] to-[#ff7f00] text-white px-4 py-2 rounded-full w-full shadow-md hover:shadow-xl transition-all">Добавить</button>
+                      class="text-[16px] border-2 border-[#FCDE00] bg-transparent rounded-[10px] w-[200px] text-center transition duration-700 ease-in-out text-[#FCDE00] py-[6px] hover:bg-[#FCDE00] hover:text-white section-button">Добавить</button>
                   </div>
                 </form>
               </div>
@@ -219,8 +218,8 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  height: 40%;
-  background-image: linear-gradient(to top, #fcde00, #ff7f00);
+  height: 43%;
+  background-color: #FCDE00;
   z-index: -1;
 }
 
@@ -238,7 +237,7 @@ export default {
   .slider-container {
     width: 800px;
   }
-  
+
 }
 
 @media (max-width: 1200px) {
