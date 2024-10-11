@@ -3,8 +3,14 @@ import HomePage from '../components/HomePage.vue'
 import RegisterUsersPage from '@/components/RegisterUsersPage.vue'
 import EnterPage from '@/components/EnterPage.vue'
 import ProfilePage from '@/components/ProfilePage.vue'
+import ProductCardsPage from '@/components/ProductCardsPage.vue'
 
 const routes = [
+  {
+    path: '/product/cards',
+    name: 'ProductCards',
+    component: ProductCardsPage
+  },
   {
     path: '/',
     name: 'Home',

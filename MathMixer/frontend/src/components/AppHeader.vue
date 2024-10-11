@@ -3,9 +3,9 @@
     <div class="max-w-[1360px] mx-auto px-[10px]">
       <div  class="flex justify-between items-center h-[137px]">
         <div>
-          <a href="#">
+          <router-link to="/">
             <img src="../assets/images/logo.svg" alt="Логотип сайта" />
-          </a>
+          </router-link>
         </div>
 
             <nav class="w-[525px]">
@@ -23,11 +23,9 @@
             placeholder="Поиск по вопросам"
           />
           <div class="search-icon opacity-60">
-            <img
-              src="../assets/images/search-icon.svg"
-              alt="Иконка поиска"
-              class="w-6 h-6"
-            />
+            <router-link to="/product/cards">
+            <img src="../assets/images/search-icon.svg" alt="Иконка поиска" class="w-6 h-6" />
+            </router-link>
           </div>
         </div>
 
@@ -69,6 +67,9 @@ export default {
       }
     }
   },
+  goToAbout() {
+      this.$router.push('/about');
+    },
   mounted() {
     this.getUserDetails();
   }

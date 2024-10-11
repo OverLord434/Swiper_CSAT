@@ -5,6 +5,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
 
+from .models import Profile
+from rest_framework.validators import UniqueValidator
 # Сериализатор для регистрации
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
@@ -90,3 +92,54 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'email', 'date_joined']
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(
+        required=True,
+        validators=[UniqueValidator(queryset=User.objects.all())]
+    )
+    username = serializers.CharField(
+        required=True,
+        validators=[UniqueValidator(queryset=User.objects.all())]
+    )
+    password = serializers.CharField(write_only=True, required=True)
+    password2 = serializers.CharField(write_only=True, required=True)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password', 'password2')
+
+    def validate(self, data):
+        if data['password'] != data['password2']:
+            raise serializers.ValidationError("Passwords do not match.")
+        return data
+
+    def update(self, instance, validated_data):
+        instance.username = validated_data['username']
+        instance.email = validated_data['email']
+        if 'password' in validated_data:
+            instance.set_password(validated_data['password'])
+        instance.save()
+        return instance
+
+class ProfileSerializerImage(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username')
+    profile_picture = serializers.ImageField(required=False)
+
+    class Meta:
+        model = Profile
+        fields = ['username', 'profile_picture']
+
+    def update(self, instance, validated_data):
+        # Обновляем данные профиля
+        user_data = validated_data.pop('user', {})
+        instance.user.username = user_data.get('username', instance.user.username)
+
+        # Обновляем аватар, если он предоставлен
+        profile_picture = validated_data.get('profile_picture', None)
+        if profile_picture:
+            instance.profile_picture = profile_picture
+
+        instance.user.save()
+        instance.save()
+        return instance

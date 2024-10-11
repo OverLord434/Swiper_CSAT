@@ -1,8 +1,6 @@
 from django.urls import include, path
-from rest_framework.routers import DefaultRouter
-
-router = DefaultRouter()
+from .views import ProductSearchView
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/product/cards', ProductSearchView.as_view()),
 ]

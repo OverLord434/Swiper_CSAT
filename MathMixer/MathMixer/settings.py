@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -68,7 +68,7 @@ WSGI_APPLICATION = "MathMixer.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'users_db',
+        'NAME': 'csatdb',
         'USER': 'postgres',
         'PASSWORD': 'gthcbr12qw34er',
         'HOST': 'localhost',
@@ -114,3 +114,10 @@ REST_FRAMEWORK = {
 }
 USE_I18N = True
 USE_L10N = True
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',  # адрес фронтенда
+]

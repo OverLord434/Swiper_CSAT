@@ -7,9 +7,12 @@ from django.contrib.auth import authenticate
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .serializers import RegisterSerializer, LoginSerializer, UserSerializer, ProfileSerializer
+from .serializers import RegisterSerializer, LoginSerializer, UserSerializer
 from rest_framework.permissions import IsAuthenticated
-
+from .serializers import UserUpdateSerializer
+from .serializers import ProfileSerializer
+from .models import Profile
+from .serializers import ProfileSerializerImage
 
 # Регистрация
 class RegisterView(APIView):
@@ -51,3 +54,32 @@ class ProfileView(APIView):
         user = request.user
         serializer = ProfileSerializer(user)
         return Response(serializer.data)
+
+class UserUpdateView(APIView):
+    permission_classes = [
+        IsAuthenticated]  # Убедимся, что только аутентифицированные пользователи могут получить доступ
+
+    def put(self, request, *args, **kwargs):
+        user = request.user
+        serializer = UserUpdateSerializer(user, data=request.data)
+
+        def put(self, request, *args, **kwargs):
+            user = request.user
+            serializer = UserUpdateSerializer(user, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Profile updated successfully'}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ProfileUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, *args, **kwargs):
+        profile, created = Profile.objects.get_or_create(user=request.user)
+        serializer = ProfileSerializerImage(profile, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Profile updated successfully'}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
