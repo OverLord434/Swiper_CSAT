@@ -1,35 +1,33 @@
 <template>
-  <header class="text-[25px] shadow-sm">
+  <header class="shadow-sm min-h-[137px]">
     <div class="max-w-[1360px] mx-auto px-[10px]">
-      <div  class="flex justify-between items-center h-[137px]">
-        <div>
-          <router-link to="/">
-            <img src="../assets/images/logo.svg" alt="Логотип сайта" />
+      <div class="flex justify-between items-center h-[137px] flex-wrap">
+        <div class="flex-shrink-0 order-1 logo">
+          <router-link  to="/">
+                <img src="../assets/images/logo.svg" alt="Логотип сайта" />
+         </router-link>
+        </div>
+
+        <nav class="w-full md:w-auto order-2">
+          <ul v-show="isSuperUser" class="flex justify-end items-center menu-list w-full md:w-[525px] gap-[50px] menu-list">
+            <li>
+              <a href="#" @click.prevent="toggleDropdown">Добавить</a>
+              <div v-if="isDropdownVisible" class="absolute bg-white border-[1px] shadow-md z-0 px-4 py-2 w-36 rounded-md" id="dropdown">
+                <li><a href="#" class="text-[20px]" @click.prevent="addLinkClickHandler">Товары</a></li>
+                <li><a href="#" class="text-[20px]" @click.prevent="addLinkClickHandler">Услуги</a></li>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="flex justify-between items-center w-full md:w-[532px] bg-[#D9D9D9] rounded-[5px] px-[7px] mt-2 md:mt-0 order-3">
+          <input type="text" class="font-normal placeholder-black placeholder-opacity-50 w-full bg-transparent outline-none pr-[10px]" placeholder="Поиск по вопросам"/>
+          <router-link  to="/product">
+            <img src="../assets/images/search-icon.svg" alt="Иконка поиска" class="w-6 h-6" />
           </router-link>
         </div>
 
-            <nav class="w-[525px]">
-              <ul v-if="isSuperUser" class="flex justify-between items-center max-w-[525px] menu-list">
-                <li><a href="#">Добавить</a></li>
-              </ul>
-            </nav>
-
-        <div
-          class="flex justify-between items-center w-[532px] bg-[#D9D9D9] rounded-[5px] px-[7px]"
-        >
-          <input
-            type="text"
-            class="font-normal placeholder-black placeholder-opacity-50 w-full bg-transparent outline-none pr-[10px]"
-            placeholder="Поиск по вопросам"
-          />
-          <div class="search-icon opacity-60">
-            <router-link to="/product/cards">
-            <img src="../assets/images/search-icon.svg" alt="Иконка поиска" class="w-6 h-6" />
-            </router-link>
-          </div>
-        </div>
-
-        <div>
+        <div class="flex-shrink-0 order-4 profile">
           <router-link to="/enter">
             <img src="../assets/images/profile-icon.svg" alt="Иконка профиля" />
           </router-link>
@@ -47,12 +45,12 @@ export default {
     return {
       user: {
         is_superuser: false,
-        // другие поля, если нужно
       },
-      isSuperUser: false
+      isSuperUser: false,
+      isDropdownVisible: false,
     }
   },
-  methods: {
+  methods:{
     async getUserDetails() {
       try {
         const response = await axios.get('http://127.0.0.1:8000/auth/appheader/user', {
@@ -65,18 +63,29 @@ export default {
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
-    }
-  },
-  goToAbout() {
-      this.$router.push('/about');
     },
+
+    toggleDropdown(){
+      this.isDropdownVisible = !this.isDropdownVisible;
+    },
+    addLinkClickHandler(){
+      document.getElementById('model').classList.remove('hidden');
+    },
+  },
   mounted() {
     this.getUserDetails();
   }
-}
+};
 </script>
 
 <style>
+header {
+  font-size: 25px;
+}
+.menu-list {
+  flex-wrap: wrap;
+}
+
 .menu-list a {
   opacity: 0.6;
   transition: all 0.3s;
@@ -84,5 +93,51 @@ export default {
 
 .menu-list a:hover {
   opacity: 1;
+}
+
+@media (max-width: 1340px) {
+  header {
+    font-size: 23px;
+  }
+  .search-icon {
+    padding-left: 5px;
+  }
+}
+
+@media (max-width: 768px){
+  header {
+    padding-bottom: 10px;
+    font-size: 19px;
+  }
+  .profile {
+    order: 1;
+  }
+
+  .menu-list {
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 410px){
+  .menu-list{
+    gap: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  header {
+    font-size: 15px;
+  }
+
+  .logo {
+    width: 90px;
+  }
+  .profile {
+    width: 25px;
+  }
+
+  .menu-list{
+    gap: 10px;
+  }
 }
 </style>

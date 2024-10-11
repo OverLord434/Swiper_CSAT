@@ -63,7 +63,7 @@
           <div class="bg-white rounded-lg p-5 md:p-8 w-11/12 md:w-1/3 shadow-2xl transition-transform transform scale-95 hover:scale-100">
             <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">Редактировать профиль</h3>
             <div class="flex flex-col items-center mb-4">
-              <img :src="avatarPreview ? avatarPreview : user.avatar" alt="Avatar"
+              <img src="../assets/images/avatar.jpg" alt="Avatar"
                 class="rounded-full w-32 h-32 mb-4 border-4 border-yellow-400 transition-transform transform hover:scale-110" />
               <label for="avatar"
                 class="cursor-pointer bg-yellow-400 text-white px-4 py-2 rounded-lg shadow-md hover:bg-yellow-500 transition duration-300">Изменить аватарку</label>
@@ -134,7 +134,7 @@ export default {
       }
     },
   updateProfile() {
-  axios.put('http://127.0.0.1:8000/auth/profile/update', this.form, {
+  axios.put('http://127.0.0.1:8000/auth/user/update', this.form, {
     headers: {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     }
@@ -145,7 +145,7 @@ export default {
   })
   .catch(error => {
     console.log(error.response.data);
-    alert('Ошибка при обновлении профиля');
+    this.closeModal();
   });
 },
     logout() {
